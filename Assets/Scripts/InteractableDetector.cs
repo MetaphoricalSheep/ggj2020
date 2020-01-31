@@ -8,7 +8,7 @@ public class InteractableDetector : MonoBehaviour
    
     void OnTriggerEnter(Collider other)
     {
-        IInteractive interactive = other.GetComponent<IInteractive>();
+        IInteractive interactive = other.GetComponentInParent<IInteractive>();
         if (interactive != null)
         {
             //We have detected an interactive element
@@ -18,7 +18,7 @@ public class InteractableDetector : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        IInteractive interactive = other.GetComponent<IInteractive>();
+        IInteractive interactive = other.GetComponentInParent<IInteractive>();
         if (interactive != null)
         {
             GameController.instance.activeInteractiveElement = null;

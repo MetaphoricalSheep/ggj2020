@@ -10,12 +10,21 @@ public class TreeController : MonoBehaviour, IInteractive
 
     public void Highlight()
     {
-        Debug.Log("Highlighting");
+        Outline outlineComponent = GetComponent<Outline>();
+        if (outlineComponent == null)
+            outlineComponent = gameObject.AddComponent<Outline>();
+
+        outlineComponent.OutlineMode = Outline.Mode.OutlineAll;
+        outlineComponent.OutlineColor = Color.green;
+        outlineComponent.OutlineWidth = .2f;
+        outlineComponent.enabled = true;
     }
 
     public void Unhighlight()
     {
-        Debug.Log("Unhighlight");
+        Outline outlineComponent = GetComponent<Outline>();
+        if (outlineComponent != null)
+            outlineComponent.enabled = false;
     }
 
     public void Interact()
