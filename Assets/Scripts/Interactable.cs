@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IInteractive
 {
     void Highlight();
+    void Unhighlight();
     void Interact();
 }
