@@ -18,6 +18,7 @@ public class CharacterBar : MonoBehaviour {
     public float barHeightPercent;
     public float borderWidth;
     public bool drawPlusChange;
+    public bool drawMinusChange;
 
     // Settings visual
     protected readonly float drawLastChangeTime = 4f;
@@ -144,14 +145,15 @@ public class CharacterBar : MonoBehaviour {
         }
 
         if (previousLength < currentLength && drawPlusChange) {
-            print("draw plus");
             GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(current, textureCurrent);
             GUI.DrawTexture(previous, texturePrevious);
-        } else {
-            print("draw minus");
+        } else if (drawMinusChange) {
             GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(previous, texturePrevious);
+            GUI.DrawTexture(current, textureCurrent);
+        } else {
+            GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(current, textureCurrent);
         }
     }
