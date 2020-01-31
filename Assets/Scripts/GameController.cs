@@ -10,9 +10,13 @@ public class GameController : MonoBehaviour
         get { return _activeInteractiveElement; }
         set
         {
-            _activeInteractiveElement?.Unhighlight();
+            if(_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
+                _activeInteractiveElement.Unhighlight();
+            
             _activeInteractiveElement = value;
-            _activeInteractiveElement?.Highlight();
+            
+            if(_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
+                _activeInteractiveElement.Highlight();
         }
     }
     public static GameController instance;

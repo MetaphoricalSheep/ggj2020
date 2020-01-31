@@ -44,7 +44,10 @@ public class CustomCharacterController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameController.instance.activeInteractiveElement?.Interact();
+            if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
+            {
+                GameController.instance.activeInteractiveElement.Interact();
+            }
         }
     }
 
