@@ -13,6 +13,11 @@ public class TreeController : MonoBehaviour, IInteractive
         Debug.Log("Highlighting");
     }
 
+    public void Unhighlight()
+    {
+        Debug.Log("Unhighlight");
+    }
+
     public void Interact()
     {
         ChopTree();

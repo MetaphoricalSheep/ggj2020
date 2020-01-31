@@ -7,6 +7,11 @@ public class WoodController : MonoBehaviour, IInteractive
         Debug.Log("Highlighting");
     }
 
+    public void Unhighlight()
+    {
+        Debug.Log("Unhighlight");
+    }
+
     public void Interact()
     {
         Debug.Log("Picking Up or Putting Down or Feeding Fire");
