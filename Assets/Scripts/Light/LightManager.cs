@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LightManager: MonoBehaviour {
-    private static List<Light> lights;
+    private static List<Light> lights = new List<Light>();
     private static GameObject player;
+    private static CharacterHealth characterHealth;
 
     public static void AddLight(Light light) {
         lights.Add(light);
@@ -16,12 +17,11 @@ public class LightManager: MonoBehaviour {
 
     private void Start() {
         player = GameObject.FindWithTag("Player");
+        characterHealth = player.GetComponent<CharacterHealth>();
     }
 
     private void Update() {
-        if (!PlayerIsSafe()) {
-            // player
-        }
+        characterHealth.isSafe = PlayerIsSafe();
     }
 
     private bool PlayerIsSafe() {

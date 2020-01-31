@@ -9,7 +9,7 @@ public class CharacterHealth : CharacterBar {
     protected override void Update() {
         base.Update();
         if (isSafe) {
-            base.Add(maxAmount);
+            base.Add(damagePerSecond * Time.deltaTime);
         } else {
             base.Remove(damagePerSecond * Time.deltaTime);
         }
