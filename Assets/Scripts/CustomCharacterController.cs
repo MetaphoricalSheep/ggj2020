@@ -15,7 +15,7 @@ public class CustomCharacterController : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    void Update()
+    void UpdateMovement()
     {
         Vector3 forwardDirection = new Vector3(_cameraTransform.forward.x, 0, _cameraTransform.forward.z).normalized;
         Vector3 rightDirection = (Quaternion.Euler(0f, 90f, 0f) * forwardDirection).normalized;
@@ -38,6 +38,19 @@ public class CustomCharacterController : MonoBehaviour
         }
 
         _transform.position += lookingDirection * speed * Time.deltaTime;
+    }
 
+    void UpdateInteractiveInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameController.instance.activeInteractiveElement?.Interact();
+        }
+    }
+
+    void Update()
+    {
+        UpdateMovement();
+        UpdateInteractiveInput();
     }
 }
