@@ -9,6 +9,6 @@ public class FireHealth : CharacterBar {
 
     protected override void Update() {
         base.Update();
-        base.Add(Time.deltaTime * damagePerSecond);
+        base.Remove(Time.deltaTime * damagePerSecond);
     }
 }

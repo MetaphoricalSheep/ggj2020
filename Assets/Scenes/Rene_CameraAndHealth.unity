@@ -289,20 +289,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3590849972256738464, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
+        type: 3}
+      propertyPath: field of view
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.52573174
+      value: 0.5257317
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000047622956
+      value: -0.0000004506562
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000056222564
+      value: 0.00000054642044
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972487085682, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -367,17 +372,17 @@ PrefabInstance:
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.52573174
+      value: 0.5257317
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000047622956
+      value: -0.0000004506562
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000056222564
+      value: 0.00000054642044
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 141ca9abb2d1b45ec944d152e79c9fe8, type: 3}
@@ -584,14 +589,15 @@ MonoBehaviour:
   textureBack: {fileID: 2800000, guid: b1c3e2a0dcef74acc8e81aafb7549a0a, type: 3}
   textureCurrent: {fileID: 2800000, guid: 703d4968559ca415eb65fdc577c5846c, type: 3}
   texturePrevious: {fileID: 2800000, guid: 2695c96ebca9d4f798cc09cf17cb9aa5, type: 3}
-  drawPosition: 1
-  positionXPercent: 5
-  positionYPercent: 5
-  barWidthPercent: 60
-  barHeightPercent: 6
+  drawPosition: 4
+  positionXPercent: 0
+  positionYPercent: 0.05
+  barWidthPercent: 0.6
+  barHeightPercent: 0.03
   borderWidth: 2
   drawPlusChange: 0
-  damagePerSecond: 0
+  drawMinusChange: 0
+  damagePerSecond: 10
 --- !u!1 &1692060358
 GameObject:
   m_ObjectHideFlags: 0
