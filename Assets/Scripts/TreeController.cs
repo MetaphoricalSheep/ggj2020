@@ -56,7 +56,10 @@ public class TreeController : MonoBehaviour, IInteractive
 
     private void SpawnWood()
     {
-        Instantiate(_woodTransform);
+        Vector3 spawnPosition = transform.position;
+        spawnPosition.y += 2f;
+        Transform wood = Instantiate(_woodTransform);
+        wood.position = spawnPosition;
     }
 
     private void KillTree()
