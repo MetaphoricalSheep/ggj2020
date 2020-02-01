@@ -3,7 +3,7 @@
 public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform _torchPrefab;
-    
+
     CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
@@ -41,55 +41,69 @@ public class CustomCharacterController : MonoBehaviour
         // _transform.position += lookingDirection * speed * Time.deltaTime;
     }
 
-    void UpdateInteractiveInput()
+    private void UpdateInteractiveInput()
     {
-        if (Input.GetButtonDown("Fire1")
-            || Input.GetButtonDown("Fire2")
-            || Input.GetButtonDown("Fire3")
-            || Input.GetButtonDown("Jump"))
+        if (!InteractButtonPressed())
         {
-            if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
-            {
-                GameController.instance.activeInteractiveElement.Interact();
-                
-                if (_characterHands.currentlyHolding == Holdable.Wood
-                    || _characterHands.currentlyHolding == Holdable.Torch)
-                {
-                    if (_carriedTorch != null)
-                    {
-                        Destroy(_carriedTorch.gameObject);
-                    }
+            return;
+        }
 
-                    _characterHands.AddWoodToFire();
-                } 
-                else 
+        var interactElement = GameController.instance.activeInteractiveElement as MonoBehaviour;
+
+        if (interactElement != null)
+        {
+            GameController.instance.activeInteractiveElement.Interact();
+
+            if (_characterHands.currentlyHolding == Holdable.Wood || _characterHands.currentlyHolding == Holdable.Torch)
+            {
+                if (_carriedTorch != null)
                 {
-                    var torchFuel = _characterHands.PickTorch();
-                    _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
+                    Destroy(_carriedTorch.gameObject);
                 }
+
+                _characterHands.AddWoodToFire();
 
                 return;
             }
-
-            if (_carriedTorch != null)
+            
+            if (!interactElement.CompareTag("Fire"))
             {
-                _carriedTorch.Place(_transform.position + _transform.forward);
-                _carriedTorch.transform.parent = null;
-                _carriedTorch.gameObject.SetActive(true);
-                _carriedTorch = null;
-                _characterHands.SetHolding(Holdable.Nothing);
+                return;
             }
+
+            var torchFuel = _characterHands.PickTorch();
+            _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
+
+            return;
         }
+
+        if (_carriedTorch == null)
+        {
+            return;
+        }
+
+        _carriedTorch.Place(_transform.position + _transform.forward);
+        _carriedTorch.transform.parent = null;
+        _carriedTorch.gameObject.SetActive(true);
+        _carriedTorch = null;
+        _characterHands.SetHolding(Holdable.Nothing);
     }
 
     private void FixedUpdate()
     {
         UpdateMovement();
-        
     }
 
     void Update()
     {
         UpdateInteractiveInput();
+    }
+
+    private bool InteractButtonPressed()
+    {
+        return Input.GetButtonDown("Fire1")
+               || Input.GetButtonDown("Fire2")
+               || Input.GetButtonDown("Fire3")
+               || Input.GetButtonDown("Jump");
     }
 }
