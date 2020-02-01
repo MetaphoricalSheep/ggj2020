@@ -9795,7 +9795,7 @@ MonoBehaviour:
   borderWidth: 2
   drawPlusChange: 0
   drawMinusChange: 0
-  damagePerSecond: 1
+  damagePerSecond: 2
 --- !u!114 &7875149160227886608
 MonoBehaviour:
   m_ObjectHideFlags: 0

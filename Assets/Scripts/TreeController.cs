@@ -9,7 +9,12 @@ public class TreeController : MonoBehaviour, IInteractive
     private SoundManager _soundManager;
 
     private int _wood;
+    Transform _transform;
 
+    void Awake()
+    {
+        _transform = GetComponent<Transform>();
+    }
     public void Highlight()
     {
         Outline outlineComponent = GetComponent<Outline>();
@@ -45,6 +50,11 @@ public class TreeController : MonoBehaviour, IInteractive
         _soundManager = SoundManager.Instance;
     }
 
+    void Update()
+    {
+        _transform.localRotation = Quaternion.Slerp(_transform.localRotation, Quaternion.identity, Time.deltaTime * 10f);
+    }
+
     private void ChopTree()
     {
         if (_wood == 0)
@@ -54,6 +64,8 @@ public class TreeController : MonoBehaviour, IInteractive
         
         _soundManager.PlayChop();
         _wood--;
+        _transform.localRotation = Quaternion.Euler(Random.Range(-15f,15f),0,Random.Range(-15f,15f));
+            
         SpawnWood();
         Debug.Log(_wood);
     }
