@@ -313,6 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _torchPrefab: {fileID: 7802817612648813485, guid: eef6c2c0d15b04818b2cc5f225211980,
     type: 3}
+  _tutorialTorchPrefab: {fileID: 5941312366212733501, guid: e25d6ce65ec2e4c9c9b27d82c0cee1ad,
+    type: 3}
   _charAnimator: {fileID: 2603230796759240033}
   speed: 10
 --- !u!1001 &8578309471875993048
