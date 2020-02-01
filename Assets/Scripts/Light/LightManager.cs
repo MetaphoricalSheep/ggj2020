@@ -30,16 +30,15 @@ public class LightManager : MonoBehaviour
         characterHealth.isSafe = PlayerIsSafe();
     }
 
-    private static bool PlayerIsSafe()
-    {
-        foreach (var light in lights)
-        {
-            if (Vector3.Distance(light.transform.position, player.transform.position) < light.range)
-            {
+    private bool PlayerIsSafe() {
+        print(player.transform.position);
+        foreach (Light light in lights) {
+            print(Vector3.Distance(light.transform.position, player.transform.position));
+            if (Vector3.Distance(light.transform.position, player.transform.position) < light.range) {
+                print("player in range");
                 return true;
             }
         }
-
         return false;
     }
 }

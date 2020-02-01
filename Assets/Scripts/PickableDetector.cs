@@ -7,14 +7,19 @@ public class PickableDetector : MonoBehaviour
     [SerializeField] CharacterHands _characterHands;
     void OnTriggerEnter(Collider other)
     {
+        if (_characterHands.currentlyHolding != Holdable.Nothing)
+            return;
+        
         IPickable pickable = other.GetComponentInParent<IPickable>();
-        if (pickable != null)
+        
+        if (pickable != null && (pickable as MonoBehaviour) != null)
         {
-            if (pickable != null && (pickable as MonoBehaviour) != null)
+            pickable.Pick();
+            if (other.CompareTag("Wood"))
             {
-                pickable.Pick();
-                
+                _characterHands.SetHolding(Holdable.Wood);
             }
         }
+        
     }
 }
