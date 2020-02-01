@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
 
     public void OnClickGameOverOK()
     {
-        SceneManager.LoadScene("Pieter_waldlevel");
+        SceneManager.LoadScene("Rene_scene2");
     }
 
     void Update()

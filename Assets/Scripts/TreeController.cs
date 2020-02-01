@@ -51,6 +51,7 @@ public class TreeController : MonoBehaviour, IInteractive
         
         _wood--;
         SpawnWood();
+        Debug.Log(_wood);
     }
 
     private void SpawnWood()
