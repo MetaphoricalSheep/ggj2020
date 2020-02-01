@@ -25,8 +25,11 @@ public class LightManager: MonoBehaviour {
     }
 
     private bool PlayerIsSafe() {
+        print(player.transform.position);
         foreach (Light light in lights) {
+            print(Vector3.Distance(light.transform.position, player.transform.position));
             if (Vector3.Distance(light.transform.position, player.transform.position) < light.range) {
+                print("player in range");
                 return true;
             }
         }
