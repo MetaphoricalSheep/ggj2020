@@ -14,6 +14,11 @@ public class GameController : MonoBehaviour
     IInteractive _activeInteractiveElement;
     FireHealth _fireHealth;
     public static GameController instance;
+    float _secondsSurvived = 0;
+    public float secondsSurvived => _secondsSurvived;
+
+    public SoundManager SoundManager;
+    
     public IInteractive activeInteractiveElement
     {
         get => _activeInteractiveElement;
@@ -51,23 +56,16 @@ public class GameController : MonoBehaviour
             {
                 Time.timeScale = 1;
             }
-            
-            
         }
     }
 
-    float _secondsSurvived = 0;
-    public float secondsSurvived => _secondsSurvived;
-    void Awake()
+    private void Awake()
     {
         instance = this;
-
-       
         AddUIScene();
-        
     }
 
-    void Start()
+    private void Start()
     {
         Debug.Log($"Initialize Scene");
         GameObject fireGO =GameObject.FindWithTag("Fire");
@@ -80,12 +78,12 @@ public class GameController : MonoBehaviour
         gameState = GameState.MainMenu;
     }
 
-    void AddUIScene()
+    private void AddUIScene()
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         //Debug.Log($"_fireHealth.HasMoreThan(0f) {!_fireHealth.HasMoreThan(0f)} playing {_gameState == GameState.Playing}");
         if (!_fireHealth.HasMoreThan(0f) && _gameState == GameState.Playing)

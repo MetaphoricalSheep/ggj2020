@@ -6,6 +6,8 @@ public class TreeController : MonoBehaviour, IInteractive
     [SerializeField] private Vector2 _woodRange = new Vector2(3, 5);
     [SerializeField] private Transform _woodTransform;
 
+    private SoundManager _soundManager;
+
     private int _wood;
 
     public void Highlight()
@@ -37,9 +39,10 @@ public class TreeController : MonoBehaviour, IInteractive
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         _wood = Random.Range((int) _woodRange.x, (int) _woodRange.y);
+        _soundManager = SoundManager.Instance;
     }
 
     private void ChopTree()
@@ -49,6 +52,7 @@ public class TreeController : MonoBehaviour, IInteractive
             return;
         }
         
+        _soundManager.PlayChop();
         _wood--;
         SpawnWood();
         Debug.Log(_wood);
