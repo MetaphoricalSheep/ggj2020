@@ -2,12 +2,16 @@
 
 public class CustomCharacterController : MonoBehaviour
 {
+    [SerializeField] private Transform _torchPrefab;
+    
     CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
     Transform _transform;
     Quaternion _targetRotation;
     private Rigidbody rigidbody;
+
+    private TorchController _carriedTorch;
 
     void Awake()
     {
@@ -47,17 +51,34 @@ public class CustomCharacterController : MonoBehaviour
             if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
             {
                 GameController.instance.activeInteractiveElement.Interact();
+                
                 if (_characterHands.currentlyHolding == Holdable.Wood
                     || _characterHands.currentlyHolding == Holdable.Torch)
                 {
+                    if (_carriedTorch != null)
+                    {
+                        Destroy(_carriedTorch.gameObject);
+                    }
+
                     _characterHands.AddWoodToFire();
                 } 
                 else 
                 {
-                    _characterHands.PickTorch();
+                    var torchFuel = _characterHands.PickTorch();
+                    _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
                 }
+
+                return;
             }
-            
+
+            if (_carriedTorch != null)
+            {
+                _carriedTorch.Place(_transform.position + _transform.forward);
+                _carriedTorch.transform.parent = null;
+                _carriedTorch.gameObject.SetActive(true);
+                _carriedTorch = null;
+                _characterHands.SetHolding(Holdable.Nothing);
+            }
         }
     }
 
