@@ -1,17 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterHealth : CharacterBar {
     public bool isSafe = true;
-    public float damagePerSecond = 0.0f;
+    public float damagePerSecond;
 
     protected override void Update() {
+        SoundManager.Instance.ChangeHeartBeatVolume(0.6f - currentAmount / maxAmount);
+        
         base.Update();
+        
         if (isSafe) {
             base.Add(damagePerSecond * Time.deltaTime);
-        } else {
-            base.Remove(damagePerSecond * Time.deltaTime);
+            
+            return;
         }
+
+        base.Remove(damagePerSecond * Time.deltaTime);
     }
 }
