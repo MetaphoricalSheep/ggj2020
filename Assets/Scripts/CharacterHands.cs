@@ -6,9 +6,15 @@ public enum Holdable {Nothing, Wood, Torch}
 
 public class CharacterHands : MonoBehaviour
 {
+    [SerializeField] GameObject holdingWood;
+    [SerializeField] GameObject holdingTorch;
+        
+    [SerializeField] Transform leftHandTransform;
     public Holdable currentlyHolding; 
-    public void Hold(Holdable newHoldable)
+    public void SetHolding(Holdable newHoldable)
     {
+        holdingWood.SetActive(newHoldable == Holdable.Wood);
+        holdingTorch.SetActive(newHoldable == Holdable.Torch);
         currentlyHolding = newHoldable;
     }
 }
