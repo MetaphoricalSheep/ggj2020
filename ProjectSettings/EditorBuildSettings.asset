@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+    guid: c71b9233f7e18c947a7514f1e8dc7df7
+  - enabled: 1
+    path: Assets/Scenes/Pieter_waldlevel.unity
+    guid: 3179b699050584ccda70a1afd5b046bb
   m_configObjects: {}
