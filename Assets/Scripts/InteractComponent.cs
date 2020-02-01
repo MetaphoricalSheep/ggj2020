@@ -5,7 +5,12 @@ public class InteractComponent : MonoBehaviour
     [SerializeField] private bool _interact;
     
     private IInteractive _obj;
+    Transform _transform;
 
+    void Awake()
+    {
+        _transform = GetComponent<Transform>();
+    }
     private void Start()
     {
         _obj = gameObject.GetComponent<IInteractive>();
@@ -17,7 +22,7 @@ public class InteractComponent : MonoBehaviour
         {
             return;
         }
-
+    
         _interact = false;
         _obj.Interact();
     }
