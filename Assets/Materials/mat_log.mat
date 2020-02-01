@@ -15,8 +15,10 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -99,8 +101,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - create_normals: 1
-    - fresnel: 0
-    - fresnel_intensity: 5
+    - fresnel: 1
+    - fresnel_intensity: 20
     - fresnel_power: 5
     m_Colors:
     - Color_689220F6: {r: 1, g: 0.5989302, b: 0, a: 0}
