@@ -93,7 +93,7 @@ public class CharacterBar : MonoBehaviour {
     }
 
     public virtual bool HasMoreThan(float amount) {
-        return currentAmount >= amount;
+        return currentAmount > amount;
     }
 
     void OnGUI() {
