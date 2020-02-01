@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
 
-public class RegisterLight : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
+public class RegisterLight : MonoBehaviour
+{
+    private Light _light;
+    
+    private void Start()
+    {
         // LightManager lightManager= GameObject.FindGameObjectWithTag("LightManager").GetComponent<LightManager>();
-        Light light = GetComponent<Light>();
-        if (light != null) {
-            LightManager.AddLight(light);
+        _light = GetComponent<Light>();
+
+        if (_light != null)
+        {
+            LightManager.AddLight(_light);
         }
     }
 
-    // Update is called once per frame
-    void Update() {
-
+    private void OnDestroy()
+    {
+        if (_light != null)
+        {
+            LightManager.RemoveLight(_light);
+        }
     }
 }
