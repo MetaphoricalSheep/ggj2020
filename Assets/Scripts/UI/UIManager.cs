@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
         GameController.instance.gameState = GameState.Playing;
         _soundManager.PlayGameStart();
     }
-
+   
     public void OnClickGameOverOK()
     {
         SceneManager.LoadScene("Rene_scene2");
