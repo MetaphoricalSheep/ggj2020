@@ -53,6 +53,23 @@ public class UIManager : MonoBehaviour
             Debug.Log($"Pause!");
         }
 
+        if (GameController.instance == null)
+            return;
+        
+        if (Input.GetButtonDown("Fire1")
+            || Input.GetButtonDown("Fire2")
+            || Input.GetButtonDown("Fire3")   
+            || Input.GetButtonDown("Jump")){
+            if (GameController.instance.gameState == GameState.MainMenu)
+            {
+                OnClickPlay();
+            }
+            else if (GameController.instance.gameState == GameState.GameOver)
+            {
+                OnClickGameOverOK();
+            }
+        }
+
         _timerSurviving.text = _timerSurvivingGameOver.text= GameController.instance.secondsSurvived.ToString("0.0");
         
     }
