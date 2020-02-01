@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2433924135175508394}
   - component: {fileID: 2849110456151162758}
   - component: {fileID: 4732124675980497996}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PickableDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691641930264463430}
   - component: {fileID: 1630939092240773493}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 987423035108575391}
   - component: {fileID: 3676039960958042462}
   - component: {fileID: 1788592966778029030}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: InteractableTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,15 +319,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2075422029388265056, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4572898610536209854, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572898610536209854, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5839258701301210892, guid: 6b65e4662fea7234496a2a3159bcb9f2,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5839258701301210892, guid: 6b65e4662fea7234496a2a3159bcb9f2,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7845885943174363379, guid: 6b65e4662fea7234496a2a3159bcb9f2,
         type: 3}
@@ -338,6 +353,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361757436216964565, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8412072079402452332, guid: 6b65e4662fea7234496a2a3159bcb9f2,
         type: 3}
@@ -403,6 +423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412072080616402365, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b65e4662fea7234496a2a3159bcb9f2, type: 3}
