@@ -14,7 +14,7 @@ public class CustomCharacterController : MonoBehaviour
 
     private TorchController _carriedTorch;
 
-    void Awake()
+    private void Awake()
     {
         if (Camera.main != null) _cameraTransform = Camera.main.GetComponent<Transform>();
         _transform = GetComponent<Transform>();

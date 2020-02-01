@@ -1,12 +1,8 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Prefabs/PostProcessingVolume.prefab.meta
-guid: 7fefe026a07c04723bfd32ff086b82c3
+guid: 917340d5869744aacb166e68a5c24669
 PrefabImporter:
-=======
-guid: eab6cdebd14d14220901a24cb4c805e4
 folderAsset: yes
 DefaultImporter:
->>>>>>> 3ca4179700627f72b8c5f60b7279d7b7f1add30c:Assets/Plugins/Editor.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

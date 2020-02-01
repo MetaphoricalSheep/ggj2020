@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum Holdable {Nothing, Wood, Torch}
 
@@ -8,14 +6,17 @@ public class CharacterHands : MonoBehaviour
 {
     [SerializeField] GameObject holdingWood;
     [SerializeField] GameObject holdingTorch;
+    
     Holdable _currentlyHolding = Holdable.Nothing;
     public Holdable currentlyHolding => _currentlyHolding;
 
     FireController _fireController;
+    private SoundManager _soundManager;
 
-    void Awake()
+    private void Start()
     {
         GameObject fireObject = GameObject.FindWithTag("Fire");
+        
         if (fireObject == null)
         {
             Debug.LogError("Please put a fire in the scene :3");
@@ -23,12 +24,44 @@ public class CharacterHands : MonoBehaviour
         }
         
         _fireController = GameObject.FindWithTag("Fire").GetComponent<FireController>();
+        _soundManager = SoundManager.Instance;
     }
 
     public void SetHolding(Holdable newHoldable)
     {
-        holdingWood.SetActive(newHoldable == Holdable.Wood);
-        holdingTorch.SetActive(newHoldable == Holdable.Torch);
+        var previousHoldable = _currentlyHolding;
+        
+        if (Holdable.Wood == newHoldable)
+        {
+            holdingTorch.SetActive(false);
+            holdingWood.SetActive(true);
+            _soundManager.PlayCollectLog();
+            _currentlyHolding = newHoldable;
+            
+            return;
+        }
+
+        if (Holdable.Torch == newHoldable)
+        {
+            holdingWood.SetActive(false);
+            holdingTorch.SetActive(true);
+            _currentlyHolding = newHoldable;
+            
+            return;
+        }
+
+        if (previousHoldable == Holdable.Wood)
+        {
+            _soundManager.PlayDropLog();
+        }
+
+        if (previousHoldable == Holdable.Torch)
+        {
+            _soundManager.PlayPlaceTorch();
+        }
+        
+        holdingTorch.SetActive(false);
+        holdingWood.SetActive(false);
         _currentlyHolding = newHoldable;
     }
 
