@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour, IInteractive
 {
-    public GameObject torchPrefab;
     public float burnPowerPerWood = 10;
     FireHealth _fireHealth;
-    
+    List<GameObject> _torchesAdded;
     void Awake()
     {
         _fireHealth = GetComponent<FireHealth>();
+        _torchesAdded = new List<GameObject>();
     }
 
     public void Highlight()
@@ -39,12 +39,10 @@ public class FireController : MonoBehaviour, IInteractive
     public void AddWood()
     {
         _fireHealth.Add(burnPowerPerWood);
-        //TODO instantiate new logs on the fire here
-        
     }
     public void PickTorch()
     {
         _fireHealth.Remove(burnPowerPerWood);
-        //TODO remove a log from the fire here
+        
     }
 }
