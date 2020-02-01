@@ -248,9 +248,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     - create_normals: 1
-    - fresnel: 0
-    - fresnel_intensity: 1
-    - fresnel_power: 10
+    - fresnel: 1
+    - fresnel_intensity: 0.2
+    - fresnel_power: 20
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
