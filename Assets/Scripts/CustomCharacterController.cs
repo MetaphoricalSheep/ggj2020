@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CustomCharacterController : MonoBehaviour
 {
-
     CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
@@ -33,15 +30,16 @@ public class CustomCharacterController : MonoBehaviour
         {
             lookingDirection = lookingDirection.normalized;
             _targetRotation = Quaternion.LookRotation(lookingDirection);
-            _transform.rotation = Quaternion.Slerp(_transform.rotation, _targetRotation, Time.deltaTime*16f);
+            _transform.rotation = Quaternion.Slerp(_transform.rotation, _targetRotation, Time.deltaTime * 16f);
         }
+
         rigidbody.velocity = lookingDirection * speed;
         // _transform.position += lookingDirection * speed * Time.deltaTime;
     }
 
     void UpdateInteractiveInput()
     {
-        if (Input.GetButtonDown("Fire1") 
+        if (Input.GetButtonDown("Fire1")
             || Input.GetButtonDown("Fire2")
             || Input.GetButtonDown("Fire3")
             || Input.GetButtonDown("Jump"))

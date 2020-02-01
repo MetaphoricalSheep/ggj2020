@@ -13,10 +13,9 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
     
     private float _torchFuel;
 
-    // TODO: Subscribe to IBurnable
     public float GetBurningPower() => _torchFuel;
     
-    public static TorchController CraftTorch(Transform torch, CustomCharacterController character)
+    public static TorchController Craft(Transform torch, CustomCharacterController character)
     {
         var transform = Instantiate(torch, character.transform.position, Quaternion.identity);
         var controller = transform.GetComponent<TorchController>();
@@ -26,7 +25,9 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
         
         // TODO: reduce fire
         //_fire.Take(_torchCost);
-
+        
+        // TODO: Place in player hand
+        
         return controller;
     }
 
