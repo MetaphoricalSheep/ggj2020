@@ -3,6 +3,7 @@
 public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform _torchPrefab;
+    [SerializeField] CharacterAnimator _charAnimator;
 
     CharacterHands _characterHands;
     public float speed = 10f;
@@ -52,29 +53,44 @@ public class CustomCharacterController : MonoBehaviour
 
         if (interactElement != null)
         {
-            GameController.instance.activeInteractiveElement.Interact();
-
-            if (_characterHands.currentlyHolding == Holdable.Wood || _characterHands.currentlyHolding == Holdable.Torch)
+            
+            if (GameController.instance.activeInteractiveElement as TreeController != null
+                )
             {
-                if (_carriedTorch != null)
+                if (!_charAnimator.isChopping)
                 {
-                    Destroy(_carriedTorch.gameObject);
+                    // Cut the tree only if character ended chopping animation
+                    GameController.instance.activeInteractiveElement.Interact();
+                    _charAnimator.ChopAnimation();
+                }
+            }
+            else
+            {
+                GameController.instance.activeInteractiveElement.Interact();
+
+                if (_characterHands.currentlyHolding == Holdable.Wood ||
+                    _characterHands.currentlyHolding == Holdable.Torch)
+                {
+                    if (_carriedTorch != null)
+                    {
+                        Destroy(_carriedTorch.gameObject);
+                    }
+
+                    _characterHands.AddWoodToFire();
+
+                    return;
                 }
 
-                _characterHands.AddWoodToFire();
+                if (!interactElement.CompareTag("Fire"))
+                {
+                    return;
+                }
+
+                var torchFuel = _characterHands.PickTorch();
+                _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
 
                 return;
             }
-            
-            if (!interactElement.CompareTag("Fire"))
-            {
-                return;
-            }
-
-            var torchFuel = _characterHands.PickTorch();
-            _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
-
-            return;
         }
 
         if (_carriedTorch == null)
