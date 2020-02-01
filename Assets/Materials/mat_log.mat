@@ -100,7 +100,8 @@ Material:
     - _ZWrite: 1
     - create_normals: 1
     - fresnel: 0
-    - fresnel_power: 10
+    - fresnel_intensity: 5
+    - fresnel_power: 5
     m_Colors:
     - Color_689220F6: {r: 1, g: 0.5989302, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
