@@ -11,7 +11,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] List<GameObject> uiPanels;
 
     [SerializeField] TMP_Text _timerSurviving;
-    [SerializeField] TMP_Text _timerSurvivingGameOver; 
+    [SerializeField] TMP_Text _timerSurvivingGameOver;
+
+    private SoundManager _soundManager;
     /*
      * 0 MainMenu
      * 1 Playing
@@ -20,9 +22,10 @@ public class UIManager : MonoBehaviour
      */
     static UIManager instance;
 
-    void Awake()
+    private void Awake()
     {
         instance = this;
+        _soundManager = SoundManager.Instance;
         
         if(Camera.main != null)
             Destroy(GameObject.Find("DummyCamera"));
@@ -32,17 +35,23 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < instance.uiPanels.Count; i++)
             instance.uiPanels[i].SetActive(i == panelIndex);
+
+        if (GameController.instance.gameState == GameState.GameOver)
+        {
+            SoundManager.Instance.PlayGameOver();
+        }
     }
 
     public void OnClickPlay()
     {
         Debug.Log($"OnClickPlay!");
         GameController.instance.gameState = GameState.Playing;
+        _soundManager.PlayGameStart();
     }
 
     public void OnClickGameOverOK()
     {
-        SceneManager.LoadScene("Pieter_waldlevel");
+        SceneManager.LoadScene("Rene_waldlevel");
     }
 
     void Update()
