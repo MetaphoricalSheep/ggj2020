@@ -3,34 +3,26 @@ using UnityEngine;
 
 public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
 {
-    [SerializeField] private float _torchCost = 10;
-    [SerializeField] private CustomCharacterController  _character;
-    [SerializeField] private FireHealth  _fire;
-    [SerializeField] private float _dps = 1;
+    [SerializeField] private float _dps;
     
     private GameObject _gameObject;
     private Transform _transform;
     
     private float _torchFuel;
 
-    // TODO: Subscribe to IBurnable
     public float GetBurningPower() => _torchFuel;
     
-    public static TorchController CraftTorch(Transform torch, CustomCharacterController character)
+    public static TorchController Craft(Transform torch, Transform characterTransform, float fuel)
     {
-        var transform = Instantiate(torch, character.transform.position, Quaternion.identity);
+        var transform = Instantiate(torch, characterTransform.position, Quaternion.identity, characterTransform);
         var controller = transform.GetComponent<TorchController>();
-        
-        // TODO: hide, but do not disable. or hide and set hide time
+        controller._torchFuel = fuel;
         transform.gameObject.SetActive(false);
-        
-        // TODO: reduce fire
-        //_fire.Take(_torchCost);
 
         return controller;
     }
 
-    public void Place(Vector2 position)
+    public void Place(Vector3 position)
     {
         // TODO: torch needs to burn while being carried
         _gameObject.SetActive(true);
@@ -39,17 +31,13 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
 
     public void Pick()
     {
-        _gameObject.SetActive(false);
-        // TODO: Toggle torch on player
-        // TODO: Keep track of fuel
-        throw new NotImplementedException();
+        //_gameObject.SetActive(false);
     }
 
     private void Awake()
     {
         _gameObject = gameObject;
         _transform = transform;
-        _torchFuel = _torchCost;
     }
 
     private void Update()
