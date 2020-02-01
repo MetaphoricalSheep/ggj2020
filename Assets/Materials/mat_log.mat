@@ -101,7 +101,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - create_normals: 1
-    - fresnel: 1
+    - fresnel: 0
     - fresnel_intensity: 3
     - fresnel_power: 5
     m_Colors:
