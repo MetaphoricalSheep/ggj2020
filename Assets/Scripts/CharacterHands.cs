@@ -10,7 +10,7 @@ public class CharacterHands : MonoBehaviour
     [SerializeField] GameObject holdingTorch;
         
     [SerializeField] Transform leftHandTransform;
-    public Holdable currentlyHolding; 
+    Holdable currentlyHolding; 
     public void SetHolding(Holdable newHoldable)
     {
         holdingWood.SetActive(newHoldable == Holdable.Wood);

@@ -13,7 +13,10 @@ public class PickableDetector : MonoBehaviour
             if (pickable != null && (pickable as MonoBehaviour) != null)
             {
                 pickable.Pick();
-                
+                if (other.CompareTag("Wood"))
+                {
+                    _characterHands.SetHolding(Holdable.Wood);
+                }
             }
         }
     }
