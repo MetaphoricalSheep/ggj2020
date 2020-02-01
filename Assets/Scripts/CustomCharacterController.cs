@@ -5,6 +5,7 @@ using UnityEngine;
 public class CustomCharacterController : MonoBehaviour
 {
 
+    CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
     Transform _transform;
@@ -16,6 +17,7 @@ public class CustomCharacterController : MonoBehaviour
         if (Camera.main != null) _cameraTransform = Camera.main.GetComponent<Transform>();
         _transform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody>();
+        _characterHands = GetComponent<CharacterHands>();
     }
 
     void UpdateMovement()
@@ -47,13 +49,28 @@ public class CustomCharacterController : MonoBehaviour
             if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
             {
                 GameController.instance.activeInteractiveElement.Interact();
+                if (_characterHands.currentlyHolding == Holdable.Wood
+                    || _characterHands.currentlyHolding == Holdable.Torch)
+                {
+                    _characterHands.AddWoodToFire();
+                } 
+                else 
+                {
+                    _characterHands.PickTorch();
+                }
             }
+            
         }
     }
 
     private void FixedUpdate()
     {
         UpdateMovement();
+        
+    }
+
+    void Update()
+    {
         UpdateInteractiveInput();
     }
 }
