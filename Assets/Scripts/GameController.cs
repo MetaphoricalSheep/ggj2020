@@ -15,21 +15,21 @@ public class GameController : MonoBehaviour
 {
     IInteractive _activeInteractiveElement;
     FireHealth _fireHealth;
+    public static GameController instance;
     public IInteractive activeInteractiveElement
     {
-        get { return _activeInteractiveElement; }
+        get => _activeInteractiveElement;
         set
         {
-            if(_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
+            if (_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
                 _activeInteractiveElement.Unhighlight();
-            
+
             _activeInteractiveElement = value;
-            
-            if(_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
+
+            if (_activeInteractiveElement != null && _activeInteractiveElement as MonoBehaviour != null)
                 _activeInteractiveElement.Highlight();
         }
     }
-    public static GameController instance;
 
     GameState _gameState;
     public GameState gameState
@@ -37,6 +37,9 @@ public class GameController : MonoBehaviour
         get { return _gameState; }
         set
         {
+            if (_gameState == GameState.MainMenu && value == GameState.Playing)
+                _secondsSurvived = 0;
+                
             _gameState = value;
             UIManager.ShowUIPanel((int)_gameState);
             if (_gameState == GameState.MainMenu
@@ -51,8 +54,12 @@ public class GameController : MonoBehaviour
                 Time.timeScale = 1;
             }
             
+            
         }
     }
+
+    float _secondsSurvived = 0;
+    public float secondsSurvived => _secondsSurvived;
     void Awake()
     {
         instance = this;
@@ -64,7 +71,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log($"Initialize Scene");
         GameObject fireGO =GameObject.FindWithTag("Fire");
         if (fireGO == null) 
         {
@@ -86,6 +93,11 @@ public class GameController : MonoBehaviour
         if (!_fireHealth.HasMoreThan(0f) && _gameState == GameState.Playing)
         {
             gameState = GameState.GameOver;
+        }
+
+        if (gameState == GameState.Playing)
+        {
+            _secondsSurvived += Time.deltaTime;
         }
     }
 }

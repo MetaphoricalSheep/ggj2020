@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> uiPanels;
+
+    [SerializeField] TMP_Text _timerSurviving;
+    [SerializeField] TMP_Text _timerSurvivingGameOver; 
     /*
      * 0 MainMenu
      * 1 Playing
@@ -18,15 +22,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else
-        {
-            DestroyImmediate(instance);
-        }
+        instance = this;
         
         if(Camera.main != null)
             Destroy(GameObject.Find("DummyCamera"));
@@ -40,12 +36,13 @@ public class UIManager : MonoBehaviour
 
     public void OnClickPlay()
     {
+        Debug.Log($"OnClickPlay!");
         GameController.instance.gameState = GameState.Playing;
     }
 
     public void OnClickGameOverOK()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Pieter_waldlevel");
     }
 
     void Update()
@@ -55,6 +52,9 @@ public class UIManager : MonoBehaviour
             //TODO implement pause
             Debug.Log($"Pause!");
         }
+
+        _timerSurviving.text = _timerSurvivingGameOver.text= GameController.instance.secondsSurvived.ToString("0.0");
+        
     }
     
 }

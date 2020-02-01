@@ -39,10 +39,12 @@ public class CharacterHands : MonoBehaviour
         _fireController.AddWood();
     }
 
-    public void PickTorch()
+    public float PickTorch()
     {
         Debug.Log($"PickTorch");
         SetHolding(Holdable.Torch);
         _fireController.PickTorch();
+
+        return _fireController.burnPowerPerWood;
     }
 }

@@ -19,7 +19,8 @@ TagManager:
   - Wood
   - Tree
   - PlayerCollider
-  - 
+  - InteractTrigger
+  - Post
   - 
   - 
   - 
