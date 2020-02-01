@@ -9,10 +9,13 @@ public class CustomCharacterController : MonoBehaviour
     Transform _cameraTransform;
     Transform _transform;
     Quaternion _targetRotation;
+    private Rigidbody rigidbody;
+
     void Awake()
     {
         if (Camera.main != null) _cameraTransform = Camera.main.GetComponent<Transform>();
         _transform = GetComponent<Transform>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void UpdateMovement()
@@ -21,7 +24,6 @@ public class CustomCharacterController : MonoBehaviour
         Vector3 rightDirection = (Quaternion.Euler(0f, 90f, 0f) * forwardDirection).normalized;
         Vector3 lookingDirection = Vector3.zero;
 
-        
         lookingDirection += forwardDirection * Input.GetAxis("Vertical");
         lookingDirection += rightDirection * Input.GetAxis("Horizontal");
 
@@ -31,8 +33,8 @@ public class CustomCharacterController : MonoBehaviour
             _targetRotation = Quaternion.LookRotation(lookingDirection);
             _transform.rotation = Quaternion.Slerp(_transform.rotation, _targetRotation, Time.deltaTime*16f);
         }
-
-        _transform.position += lookingDirection * speed * Time.deltaTime;
+        rigidbody.velocity = lookingDirection * speed;
+        // _transform.position += lookingDirection * speed * Time.deltaTime;
     }
 
     void UpdateInteractiveInput()
@@ -49,7 +51,7 @@ public class CustomCharacterController : MonoBehaviour
         }
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         UpdateMovement();
         UpdateInteractiveInput();
