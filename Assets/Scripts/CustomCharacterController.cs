@@ -24,15 +24,8 @@ public class CustomCharacterController : MonoBehaviour
         Vector3 rightDirection = (Quaternion.Euler(0f, 90f, 0f) * forwardDirection).normalized;
         Vector3 lookingDirection = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
-            lookingDirection += forwardDirection;
-        else if (Input.GetKey(KeyCode.S))
-            lookingDirection -= forwardDirection;
-
-        if (Input.GetKey(KeyCode.D))
-            lookingDirection += rightDirection;
-        else if (Input.GetKey(KeyCode.A))
-            lookingDirection -= rightDirection;
+        lookingDirection += forwardDirection * Input.GetAxis("Vertical");
+        lookingDirection += rightDirection * Input.GetAxis("Horizontal");
 
         if (lookingDirection != Vector3.zero)
         {
@@ -46,7 +39,10 @@ public class CustomCharacterController : MonoBehaviour
 
     void UpdateInteractiveInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire1") 
+            || Input.GetButtonDown("Fire2")
+            || Input.GetButtonDown("Fire3")
+            || Input.GetButtonDown("Jump"))
         {
             if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
             {
