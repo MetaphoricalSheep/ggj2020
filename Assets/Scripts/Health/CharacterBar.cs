@@ -64,7 +64,7 @@ public class CharacterBar : MonoBehaviour {
     public virtual void Remove(float amount) {
         float amountBefore = currentAmount;
         currentAmount -= Mathf.Abs(amount);
-
+        
         if (currentAmount < 0) {
             currentAmount = 0;
         }
