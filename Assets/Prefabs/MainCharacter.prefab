@@ -313,6 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _torchPrefab: {fileID: 7802817612648813485, guid: eef6c2c0d15b04818b2cc5f225211980,
     type: 3}
+  _charAnimator: {fileID: 2603230796759240033}
   speed: 10
 --- !u!1001 &8578309471875993048
 PrefabInstance:
@@ -460,5 +461,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ff1608e35a5b447bca54578dbdfef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2603230796759240033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5993393482469245113, guid: 6b65e4662fea7234496a2a3159bcb9f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8578309471875993048}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffa90abed994154fae14691175c8e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

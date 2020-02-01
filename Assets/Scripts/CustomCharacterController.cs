@@ -3,7 +3,7 @@
 public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform _torchPrefab;
-    
+    [SerializeField] CharacterAnimator _charAnimator;
     CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
@@ -51,6 +51,10 @@ public class CustomCharacterController : MonoBehaviour
             if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
             {
                 GameController.instance.activeInteractiveElement.Interact();
+                if (GameController.instance.activeInteractiveElement as TreeController != null)
+                {
+                    _charAnimator.ChopAnimation();
+                }
                 
                 if (_characterHands.currentlyHolding == Holdable.Wood
                     || _characterHands.currentlyHolding == Holdable.Torch)

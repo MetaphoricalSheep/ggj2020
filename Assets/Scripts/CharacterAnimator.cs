@@ -9,31 +9,39 @@ public class CharacterAnimator : MonoBehaviour
     Animator _animator;
     Transform _transform;
     Vector3 lastPosition;
-    [SerializeField] float runningVelocityThreshold;
+    [SerializeField] CharacterHands _characterHands;
+    bool isChopping = false;
     void Awake()
     {
         _transform = transform;
         _animator = GetComponent<Animator>();
-        _animator.SetInteger("state",0);
+        
     }
 
     void FixedUpdate()
     {
+        
         float currentVelocity = Vector3.Distance(_transform.position, lastPosition);
-        //Debug.Log($"{currentVelocity}");
-        if (currentVelocity > runningVelocityThreshold)
+        if (!isChopping)
         {
-            if (_animator.GetInteger("state") != 1)
-            {
-                Debug.Log($"Setting run state");
-                _animator.SetInteger("state", 1);
-            }
+            _animator.SetFloat("velocity", currentVelocity);
+            _animator.SetBool("isCarrying", _characterHands.currentlyHolding != Holdable.Nothing);
         }
-        else
-        {
-            if(_animator.GetInteger("state") != 0)
-                _animator.SetInteger("state", 0);
-        }
+
         lastPosition = _transform.position;
+    }
+
+    public void ChopAnimation()
+    {
+        Debug.Log($"ChopAnimation");
+        isChopping = true;
+        _animator.SetBool("isChopping", true);
+        Invoke("ChopEnded",.5f);
+    }
+
+    void ChopEnded()
+    {
+        _animator.SetBool("isChopping", false);
+        isChopping = false;
     }
 }
