@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_log
+  m_Name: mat_bonfire
   m_Shader: {fileID: -6465566751694194690, guid: 978ebbec994a44deb8303d28bcfdf623,
     type: 3}
   m_ShaderKeywords: 
@@ -101,13 +101,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - create_normals: 1
-    - fresnel: 0
-    - fresnel_intensity: 3
-    - fresnel_power: 5
+    - fresnel: 1
+    - fresnel_intensity: 10
+    - fresnel_power: 3
     m_Colors:
     - Color_689220F6: {r: 1, g: 0.5989302, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - fresnel_color: {r: 14.754423, g: 9.192546, b: 0, a: 1}
+    - fresnel_color: {r: 0.9622642, g: 0.43698195, b: 0, a: 1}
