@@ -4,6 +4,7 @@ public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform _torchPrefab;
     [SerializeField] CharacterAnimator _charAnimator;
+
     CharacterHands _characterHands;
     public float speed = 10f;
     Transform _cameraTransform;
@@ -41,23 +42,34 @@ public class CustomCharacterController : MonoBehaviour
         // _transform.position += lookingDirection * speed * Time.deltaTime;
     }
 
-    void UpdateInteractiveInput()
+    private void UpdateInteractiveInput()
     {
-        if (Input.GetButtonDown("Fire1")
-            || Input.GetButtonDown("Fire2")
-            || Input.GetButtonDown("Fire3")
-            || Input.GetButtonDown("Jump"))
+        if (!InteractButtonPressed())
         {
-            if (GameController.instance.activeInteractiveElement != null && GameController.instance.activeInteractiveElement as MonoBehaviour != null)
+            return;
+        }
+
+        var interactElement = GameController.instance.activeInteractiveElement as MonoBehaviour;
+
+        if (interactElement != null)
+        {
+            
+            if (GameController.instance.activeInteractiveElement as TreeController != null
+                )
             {
-                GameController.instance.activeInteractiveElement.Interact();
-                if (GameController.instance.activeInteractiveElement as TreeController != null)
+                if (!_charAnimator.isChopping)
                 {
+                    // Cut the tree only if character ended chopping animation
+                    GameController.instance.activeInteractiveElement.Interact();
                     _charAnimator.ChopAnimation();
                 }
-                
-                if (_characterHands.currentlyHolding == Holdable.Wood
-                    || _characterHands.currentlyHolding == Holdable.Torch)
+            }
+            else
+            {
+                GameController.instance.activeInteractiveElement.Interact();
+
+                if (_characterHands.currentlyHolding == Holdable.Wood ||
+                    _characterHands.currentlyHolding == Holdable.Torch)
                 {
                     if (_carriedTorch != null)
                     {
@@ -65,35 +77,49 @@ public class CustomCharacterController : MonoBehaviour
                     }
 
                     _characterHands.AddWoodToFire();
-                } 
-                else 
-                {
-                    var torchFuel = _characterHands.PickTorch();
-                    _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
+
+                    return;
                 }
+
+                if (!interactElement.CompareTag("Fire"))
+                {
+                    return;
+                }
+
+                var torchFuel = _characterHands.PickTorch();
+                _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
 
                 return;
             }
-
-            if (_carriedTorch != null)
-            {
-                _carriedTorch.Place(_transform.position + _transform.forward);
-                _carriedTorch.transform.parent = null;
-                _carriedTorch.gameObject.SetActive(true);
-                _carriedTorch = null;
-                _characterHands.SetHolding(Holdable.Nothing);
-            }
         }
+
+        if (_carriedTorch == null)
+        {
+            return;
+        }
+
+        _carriedTorch.Place(_transform.position + _transform.forward);
+        _carriedTorch.transform.parent = null;
+        _carriedTorch.gameObject.SetActive(true);
+        _carriedTorch = null;
+        _characterHands.SetHolding(Holdable.Nothing);
     }
 
     private void FixedUpdate()
     {
         UpdateMovement();
-        
     }
 
     void Update()
     {
         UpdateInteractiveInput();
+    }
+
+    private bool InteractButtonPressed()
+    {
+        return Input.GetButtonDown("Fire1")
+               || Input.GetButtonDown("Fire2")
+               || Input.GetButtonDown("Fire3")
+               || Input.GetButtonDown("Jump");
     }
 }

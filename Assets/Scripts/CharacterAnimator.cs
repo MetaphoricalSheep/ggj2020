@@ -10,7 +10,7 @@ public class CharacterAnimator : MonoBehaviour
     Transform _transform;
     Vector3 lastPosition;
     [SerializeField] CharacterHands _characterHands;
-    bool isChopping = false;
+    public bool isChopping = false;
     void Awake()
     {
         _transform = transform;
@@ -36,7 +36,7 @@ public class CharacterAnimator : MonoBehaviour
         Debug.Log($"ChopAnimation");
         isChopping = true;
         _animator.SetBool("isChopping", true);
-        Invoke("ChopEnded",.5f);
+        Invoke("ChopEnded",.3f);
     }
 
     void ChopEnded()
