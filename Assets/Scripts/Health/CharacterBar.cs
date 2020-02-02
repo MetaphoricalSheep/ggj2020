@@ -4,7 +4,7 @@ public class CharacterBar : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    public float maxAmount = 100f;
+    public float maxAmount = 128f;
 
     public enum DrawPosition
     {

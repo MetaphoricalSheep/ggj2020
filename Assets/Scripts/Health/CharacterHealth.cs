@@ -5,7 +5,7 @@ public class CharacterHealth : CharacterBar {
     public float damagePerSecond;
 
     protected override void Update() {
-        SoundManager.Instance.ChangeHeartBeatVolume(0.6f - currentAmount / maxAmount);
+        SoundManager.Instance.ChangeHeartBeatVolume(0.6f - currentAmount / maxAmount + 0.25f);
         
         base.Update();
         

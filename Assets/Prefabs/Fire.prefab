@@ -9783,7 +9783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f9c56ab589e454aade8c801e3d5c09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmount: 128
+  maxAmount: 256
   textureBack: {fileID: 2800000, guid: b1c3e2a0dcef74acc8e81aafb7549a0a, type: 3}
   textureCurrent: {fileID: 2800000, guid: 703d4968559ca415eb65fdc577c5846c, type: 3}
   texturePrevious: {fileID: 2800000, guid: 2695c96ebca9d4f798cc09cf17cb9aa5, type: 3}
@@ -9795,7 +9795,7 @@ MonoBehaviour:
   borderWidth: 2
   drawPlusChange: 0
   drawMinusChange: 0
-  damagePerSecond: 2
+  damagePerSecond: 5
 --- !u!114 &7875149160227886608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9808,7 +9808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8ee8b7d07f27d4bbe91a06c861c7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnPowerPerWood: 10
+  burnPowerPerWood: 20
   pickWoodTutorialText: {fileID: 3456111931478074243, guid: b5b8723b4d31746af85d097b0ff18973,
     type: 3}
   pickedTorchTutorialText: {fileID: 3456111931478074243, guid: 0ff06bc9e7b6343eab45b86bd1bc04b8,

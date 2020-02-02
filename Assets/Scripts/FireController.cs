@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class FireController : MonoBehaviour, IInteractive
 {
@@ -16,6 +17,7 @@ public class FireController : MonoBehaviour, IInteractive
     {
         _fireHealth = GetComponent<FireHealth>();
         _torchesAdded = new List<GameObject>();
+        RectTransform t;
     }
 
     public void Highlight()
