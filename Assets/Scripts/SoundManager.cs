@@ -50,6 +50,7 @@ public class SoundManager : MonoBehaviour
     public void ChangeHeartBeatVolume(float volumeScale=1f)
     {
         _heartBeatSource.volume = volumeScale;
+        _heartBeatSource.pitch = 1.3f + volumeScale / 2;
     }
 
     public void PlayTreeWhooshIn()
