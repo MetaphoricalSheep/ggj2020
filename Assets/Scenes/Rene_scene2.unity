@@ -2231,12 +2231,12 @@ PrefabInstance:
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000020715163
+      value: -0.0000002071519
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000085854914
+      value: 0.00000008585502
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -2331,12 +2331,12 @@ PrefabInstance:
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000020715163
+      value: -0.0000002071519
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000085854914
+      value: 0.00000008585502
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -3020,6 +3020,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TutorialController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370531975259027829, guid: a106d2f0f117f4f6da1bfb299dc94c35,
+        type: 3}
+      propertyPath: m_TagString
+      value: TutorialController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3370531976081218750, guid: a106d2f0f117f4f6da1bfb299dc94c35,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a106d2f0f117f4f6da1bfb299dc94c35, type: 3}

@@ -10,11 +10,16 @@ public class TreeController : MonoBehaviour, IInteractive
 
     private int _wood;
     Transform _transform;
+    private TutorialController tutorialController;
+    private static bool tutorialPlayed;
 
     void Awake()
     {
         _transform = GetComponent<Transform>();
+        tutorialController = GameObject.FindGameObjectWithTag("TutorialController").GetComponent<TutorialController>();
+
     }
+
     public void Highlight()
     {
         Outline outlineComponent = GetComponent<Outline>();
@@ -80,6 +85,11 @@ public class TreeController : MonoBehaviour, IInteractive
 
     private void KillTree()
     {
+        if (!tutorialPlayed) {
+            tutorialPlayed = true;
+            tutorialController.PlayReturnLog();
+        }
+
         Destroy(gameObject);
     }
 }

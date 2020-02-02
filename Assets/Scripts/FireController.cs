@@ -6,11 +6,15 @@ public class FireController : MonoBehaviour, IInteractive
     public float burnPowerPerWood = 10;
     FireHealth _fireHealth;
     List<GameObject> _torchesAdded;
+    private bool firstWoodAdded;
+    private bool firstTorchPicked;
+    private TutorialController tutorialController;
 
     void Awake()
     {
         _fireHealth = GetComponent<FireHealth>();
         _torchesAdded = new List<GameObject>();
+        tutorialController = GameObject.FindGameObjectWithTag("TutorialController").GetComponent<TutorialController>();
     }
 
     public void Highlight()
@@ -37,9 +41,18 @@ public class FireController : MonoBehaviour, IInteractive
     }
 
     public void AddWood() {
+        if (!firstWoodAdded && !firstTorchPicked) {
+            firstWoodAdded = true;
+            tutorialController.PlayGetTorch();
+        }
         _fireHealth.Add(burnPowerPerWood);
     }
     public void PickTorch() {
+        if (!firstTorchPicked) {
+            firstTorchPicked = true;
+            tutorialController.PlayPlaceTorch();
+        }
+
         _fireHealth.Remove(burnPowerPerWood);
     }
 }
