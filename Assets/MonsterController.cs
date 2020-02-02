@@ -49,6 +49,7 @@ public class MonsterController : MonoBehaviour {
             float currentDistance = Vector3.Magnitude(distVec);
             if (currentDistance < moveDistance) {
                 Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
+                moveVec.y = 0.0f;
                 m.transform.position += moveVec;
                 CheckMonsterDestory(m);
             }
