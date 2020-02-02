@@ -74,7 +74,7 @@ public class CharacterHands : MonoBehaviour
 
     public float PickTorch()
     {
-        Debug.Log($"PickTorch");
+//        Debug.Log($"PickTorch");
         SetHolding(Holdable.Torch);
         _fireController.PickTorch();
 

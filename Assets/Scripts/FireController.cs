@@ -10,7 +10,7 @@ public class FireController : MonoBehaviour, IInteractive
     private bool firstWoodAdded;
     private bool firstTorchPicked;
     private TutorialController tutorialController;
-
+    [SerializeField] GameObject _highlightObject;
     void Awake()
     {
         _fireHealth = GetComponent<FireHealth>();
@@ -20,21 +20,12 @@ public class FireController : MonoBehaviour, IInteractive
 
     public void Highlight()
     {
-        Outline outlineComponent = GetComponent<Outline>();
-        if (outlineComponent == null)
-            outlineComponent = gameObject.AddComponent<Outline>();
-
-        outlineComponent.OutlineMode = Outline.Mode.OutlineAll;
-        outlineComponent.OutlineColor = Color.green;
-        outlineComponent.OutlineWidth = .2f;
-        outlineComponent.enabled = true;
+        _highlightObject.SetActive(true);
     }
 
     public void Unhighlight()
     {
-        Outline outlineComponent = GetComponent<Outline>();
-        if (outlineComponent != null)
-            outlineComponent.enabled = false;
+        _highlightObject.SetActive(false);
     }
 
     public void Interact()
