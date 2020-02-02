@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        _timerSurviving.text = _timerSurvivingGameOver.text= GameController.instance.secondsSurvived.ToString("0.0");
+        _timerSurviving.text = _timerSurvivingGameOver.text= ((int)GameController.instance.secondsSurvived).ToString();
         
     }
     
