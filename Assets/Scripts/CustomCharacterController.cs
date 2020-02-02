@@ -54,8 +54,7 @@ public class CustomCharacterController : MonoBehaviour
         if (interactElement != null)
         {
             
-            if (GameController.instance.activeInteractiveElement as TreeController != null
-                )
+            if (GameController.instance.activeInteractiveElement as TreeController != null)
             {
                 if (!_charAnimator.isChopping)
                 {

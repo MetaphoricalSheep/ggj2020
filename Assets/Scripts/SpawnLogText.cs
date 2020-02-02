@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnLogText : MonoBehaviour {
     public GameObject returnText;
@@ -11,11 +9,13 @@ public class SpawnLogText : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        if (isQuitting) {
+        if (isQuitting || GameController.instance.gameState == GameState.GameOver) 
+        {
             return;
         }
-        GameObject tt = Instantiate(returnText);
-        tt.transform.position = this.transform.position;
+        
+        var tt = Instantiate(returnText);
+        tt.transform.position = transform.position;
         Destroy(tt, 5f);
     }
 }

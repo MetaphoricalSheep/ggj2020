@@ -4,6 +4,9 @@ using UnityEngine;
 public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
 {
     [SerializeField] private float _dps;
+    [SerializeField] private GameObject _model;
+    [SerializeField] private GameObject _smallParticle;
+    [SerializeField] private GameObject _fireParticle;
     
     private GameObject _gameObject;
     private Transform _transform;
@@ -14,25 +17,27 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
     
     public static TorchController Craft(Transform torch, Transform characterTransform, float fuel)
     {
-        var transform = Instantiate(torch, characterTransform.position, Quaternion.identity, characterTransform);
+        var forward = characterTransform.forward;
+        var right = characterTransform.right;
+        var position = characterTransform.position + forward + forward - right - right;
+        var transform = Instantiate(torch, position, Quaternion.identity, characterTransform);
         var controller = transform.GetComponent<TorchController>();
         controller._torchFuel = fuel;
-        transform.gameObject.SetActive(false);
+        controller.Hide();
 
         return controller;
     }
 
     public void Place(Vector3 position)
     {
-        // TODO: torch needs to burn while being carried
-        _gameObject.SetActive(true);
+        Show();
         _transform.position = position;
         _transform.rotation = Quaternion.identity;
     }
 
     public void Pick()
     {
-        //_gameObject.SetActive(false);
+        //Hide();
     }
 
     private void Awake()
@@ -49,5 +54,19 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
         {
             Destroy(_gameObject);
         }
+    }
+
+    private void Show()
+    {
+        _model.SetActive(true);
+        _fireParticle.SetActive(true);
+        _smallParticle.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        _model.SetActive(false);
+        _fireParticle.SetActive(false);
+        _smallParticle.SetActive(false);
     }
 }

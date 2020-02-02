@@ -9570,6 +9570,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dps: 0
+  _model: {fileID: 6214507207143667121}
+  _smallParticle: {fileID: 4707749418004018389}
+  _fireParticle: {fileID: 306757794072642775}
 --- !u!82 &2801002190634120793
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9591,7 +9594,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 3
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -9962,6 +9965,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207e7ada9733a9f4195a14237d52e97f, type: 3}
+--- !u!1 &6214507207143667121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 207e7ada9733a9f4195a14237d52e97f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2675050730605800632}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6945963196804089762 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 207e7ada9733a9f4195a14237d52e97f,
