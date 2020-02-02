@@ -16,6 +16,14 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!81 &6122576168775138838
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266251136452413620}
+  m_Enabled: 1
 --- !u!114 &1369985286862685900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,7 +49,7 @@ MonoBehaviour:
   drawPlusChange: 0
   drawMinusChange: 0
   isSafe: 1
-  damagePerSecond: 50
+  damagePerSecond: 10
 --- !u!114 &1959648831439776253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,18 +64,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _torchPrefab: {fileID: 7802817612648813485, guid: eef6c2c0d15b04818b2cc5f225211980,
     type: 3}
-  _tutorialTorchPrefab: {fileID: 5941312366212733501, guid: e25d6ce65ec2e4c9c9b27d82c0cee1ad,
-    type: 3}
   _charAnimator: {fileID: 2603230796759240033}
   speed: 10
---- !u!81 &6122576168775138838
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 266251136452413620}
-  m_Enabled: 1
 --- !u!1 &2456011360163351602
 GameObject:
   m_ObjectHideFlags: 0

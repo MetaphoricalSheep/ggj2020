@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayDropLog()
     {
-        _audioSource.PlayOneShot(_dropLog[Random.Range(0, _dropLog.Length)]);
+        _audioSource.PlayOneShot(_dropLog[Random.Range(0, _dropLog.Length)], 0.5f);
     }
 
     public void PlayPlaceTorch()
