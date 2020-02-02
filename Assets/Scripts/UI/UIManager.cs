@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] TMP_Text _timerSurviving;
     [SerializeField] TMP_Text _timerSurvivingGameOver;
-
+    
+    [SerializeField] GameObject _helperPanel;
+    [SerializeField] TMP_Text _helperMessage;
     private SoundManager _soundManager;
     /*
      * 0 MainMenu
@@ -42,13 +45,24 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public static void ShowHelpMessage(string helpMessage)
+    {
+        instance._helperPanel.SetActive(true);
+        instance._helperMessage.text = helpMessage;
+    }
+
+    public static void HideHelpMessage()
+    {
+        instance._helperPanel.SetActive(false);
+    }
+    
     public void OnClickPlay()
     {
         Debug.Log($"OnClickPlay!");
         GameController.instance.gameState = GameState.Playing;
         _soundManager.PlayGameStart();
     }
-
+   
     public void OnClickGameOverOK()
     {
         SceneManager.LoadScene("Rene_scene2");
