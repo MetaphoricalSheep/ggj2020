@@ -4,7 +4,11 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
+<<<<<<< HEAD
   m_CurrentQuality: 2
+=======
+  m_CurrentQuality: 3
+>>>>>>> 24855545a2131eaa084111d91894a4e74b1865fa
   m_QualitySettings:
   - serializedVersion: 2
     name: Fastest
@@ -194,6 +198,11 @@ QualitySettings:
     - Standalone
     - Windows Store Apps
   m_PerPlatformDefaultQuality:
+<<<<<<< HEAD
     Standalone: 2
     WebGL: 0
     Windows Store Apps: 2
+=======
+    Standalone: 3
+    WebGL: 3
+>>>>>>> 24855545a2131eaa084111d91894a4e74b1865fa
