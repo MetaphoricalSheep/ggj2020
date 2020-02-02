@@ -3,9 +3,6 @@
 public class CustomCharacterController : MonoBehaviour
 {
     [SerializeField] private Transform _torchPrefab;
-    [SerializeField] private Transform _tutorialTorchPrefab;
-    private bool firstTorchPlaced = false;
-
     [SerializeField] CharacterAnimator _charAnimator;
 
     CharacterHands _characterHands;
@@ -91,13 +88,7 @@ public class CustomCharacterController : MonoBehaviour
 
                 var torchFuel = _characterHands.PickTorch();
 
-                if (firstTorchPlaced) {
-                    _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
-
-                } else {
-                    firstTorchPlaced = true;
-                    _carriedTorch = TorchController.Craft(_tutorialTorchPrefab, _transform, torchFuel);
-                }
+                _carriedTorch = TorchController.Craft(_torchPrefab, _transform, torchFuel);
 
                 return;
             }

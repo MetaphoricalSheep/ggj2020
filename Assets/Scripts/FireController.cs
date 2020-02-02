@@ -6,11 +6,6 @@ public class FireController : MonoBehaviour, IInteractive {
     public float burnPowerPerWood = 10;
     FireHealth _fireHealth;
     List<GameObject> _torchesAdded;
-    private bool addedWood;
-    private bool pickedTorch;
-    public GameObject pickWoodTutorialText;
-    public GameObject pickedTorchTutorialText;
-    private GameObject pickedWoodTutorialTextInstance;
 
     void Awake() {
         _fireHealth = GetComponent<FireHealth>();
@@ -38,25 +33,9 @@ public class FireController : MonoBehaviour, IInteractive {
     }
 
     public void AddWood() {
-        if (!addedWood) {
-            addedWood = true;
-            pickedWoodTutorialTextInstance = Instantiate(pickWoodTutorialText);
-            pickedWoodTutorialTextInstance.transform.position = this.transform.position;
-        }
         _fireHealth.Add(burnPowerPerWood);
     }
     public void PickTorch() {
-        if (!pickedTorch) {
-            pickedTorch = true;
-            if (pickedWoodTutorialTextInstance != null) {
-                Destroy(pickedWoodTutorialTextInstance);
-                pickedWoodTutorialTextInstance = null;
-            }
-
-            GameObject tt = Instantiate(pickedTorchTutorialText);
-            tt.transform.position = this.transform.position;
-            Destroy(tt, 5f);
-        }
         _fireHealth.Remove(burnPowerPerWood);
     }
 }

@@ -27,6 +27,7 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
         // TODO: torch needs to burn while being carried
         _gameObject.SetActive(true);
         _transform.position = position;
+        _transform.rotation = Quaternion.identity;
     }
 
     public void Pick()
