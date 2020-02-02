@@ -45,14 +45,17 @@ public class MonsterController : MonoBehaviour {
 
     private static void MoveMonstersAwayFromPlayer() {
         foreach (GameObject m in monsters) {
+            print("Moving: " + m);
             Vector3 distVec = m.transform.position - player.transform.position;
             float currentDistance = Vector3.Magnitude(distVec);
-            if (currentDistance < moveDistance) {
-                Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
-                moveVec.y = 0.0f;
+            Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
+            moveVec.y = 0.0f;
+
+            if (moveVec.magnitude > 0.05f && moveVec.magnitude < 10f) {
                 m.transform.position += moveVec;
                 CheckMonsterDestory(m);
             }
+
         }
     }
 
