@@ -32,6 +32,7 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
     {
         Show();
         _transform.position = position;
+        _transform.rotation = Quaternion.identity;
     }
 
     public void Pick()
