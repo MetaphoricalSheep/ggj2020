@@ -13,6 +13,7 @@ public class LightManager : MonoBehaviour
     public static void AddLight(Light light)
     {
         lights.Add(light);
+        MonsterController.CheckMonstersDestroy();
     }
 
     public static void RemoveLight(Light light)
@@ -27,6 +28,19 @@ public class LightManager : MonoBehaviour
             light.intensity = intensity;
             light.range = intensity / 15;
         }
+    }
+
+    public static float GetClosestLightDistanceToPosition(Vector3 pos) {
+        float minDist = -1f;
+
+        foreach (Light l in lights) {
+            float currDist = Vector3.Distance(pos, l.transform.position);
+            if (minDist < 0.0f || currDist < minDist) {
+                minDist = currDist;
+            }
+        }
+
+        return minDist;
     }
 
     private void Start()
