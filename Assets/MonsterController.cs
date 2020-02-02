@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour {
     [SerializeField] public static float disableDistance = 15f;
-    [SerializeField] public static float destroyDistance = 7f;
-    [SerializeField] public static float moveDistance = 10f;
+    [SerializeField] public static float destroyDistance = 8f;
+    [SerializeField] public static float moveDistance = 12f;
 
     private static List<GameObject> monsters = new List<GameObject>();
     private static GameObject player;
+    private static CustomCharacterController characterController;
 
     public static List<GameObject> GetMonsters() => monsters;
 
@@ -21,11 +22,15 @@ public class MonsterController : MonoBehaviour {
 
     private void Start() {
         player = GameObject.FindWithTag("Player");
+        characterController = player.GetComponent<CustomCharacterController>();
     }
 
     private void Update() {
         DeactivateMonsters();
-        MoveMonstersAwayFromPlayer();
+
+        if (characterController.HoldingFire()) {
+            MoveMonstersAwayFromPlayer();
+        }
     }
 
     private static void DeactivateMonsters() {

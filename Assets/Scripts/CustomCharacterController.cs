@@ -22,6 +22,8 @@ public class CustomCharacterController : MonoBehaviour
         _characterHands = GetComponent<CharacterHands>();
     }
 
+    public bool HoldingFire() => _characterHands.currentlyHolding == Holdable.Torch;
+
     void UpdateMovement()
     {
         Vector3 forwardDirection = new Vector3(_cameraTransform.forward.x, 0, _cameraTransform.forward.z).normalized;
