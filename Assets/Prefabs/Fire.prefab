@@ -9795,7 +9795,7 @@ MonoBehaviour:
   borderWidth: 2
   drawPlusChange: 0
   drawMinusChange: 0
-  damagePerSecond: 5
+  damagePerSecond: 3
 --- !u!114 &7875149160227886608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9809,10 +9809,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   burnPowerPerWood: 20
-  pickWoodTutorialText: {fileID: 3456111931478074243, guid: b5b8723b4d31746af85d097b0ff18973,
-    type: 3}
-  pickedTorchTutorialText: {fileID: 3456111931478074243, guid: 0ff06bc9e7b6343eab45b86bd1bc04b8,
-    type: 3}
 --- !u!82 &1799745672072695224
 AudioSource:
   m_ObjectHideFlags: 0
