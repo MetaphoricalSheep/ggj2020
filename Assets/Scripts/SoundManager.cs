@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _gameOver;
     [SerializeField] private AudioClip _treeWhooshIn;
     [SerializeField] private AudioClip _treeWhooshOut;
+    [SerializeField] private AudioClip _torchCollect;
     
     public static SoundManager Instance;
 
@@ -72,6 +73,11 @@ public class SoundManager : MonoBehaviour
     {
         _treeTalkSource.Stop();
         _treeTalkSource.Play();
+    }
+
+    public void PlayCollectTorch()
+    {
+        _audioSource.PlayOneShot(_torchCollect);
     }
 
     private void Awake()

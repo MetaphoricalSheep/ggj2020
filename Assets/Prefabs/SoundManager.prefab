@@ -538,3 +538,4 @@ MonoBehaviour:
   _gameOver: {fileID: 8300000, guid: 527af75b83acb468e9dc7eb265bdad97, type: 3}
   _treeWhooshIn: {fileID: 8300000, guid: 123bd55bf7fd5472f8218d7863f3c64a, type: 3}
   _treeWhooshOut: {fileID: 8300000, guid: 1ad85e5942319493383a591bab89debf, type: 3}
+  _torchCollect: {fileID: 8300000, guid: 81d89a88841e64c029e6a0df2f755b28, type: 3}
