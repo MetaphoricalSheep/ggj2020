@@ -37,7 +37,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public void ChopAnimation()
     {
-        Debug.Log($"ChopAnimation");
+//        Debug.Log($"ChopAnimation");
         isChopping = true;
         _animator.SetBool("isChopping", true);
         Invoke("ChopEnded",.3f);

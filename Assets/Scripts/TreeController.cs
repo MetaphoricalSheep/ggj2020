@@ -5,7 +5,7 @@ public class TreeController : MonoBehaviour, IInteractive
 {
     [SerializeField] private Vector2 _woodRange = new Vector2(3, 5);
     [SerializeField] private Transform _woodTransform;
-
+    [SerializeField] GameObject _highlightObject;
     private SoundManager _soundManager;
 
     private int _wood;
@@ -22,21 +22,23 @@ public class TreeController : MonoBehaviour, IInteractive
 
     public void Highlight()
     {
-        Outline outlineComponent = GetComponent<Outline>();
-        if (outlineComponent == null)
-            outlineComponent = gameObject.AddComponent<Outline>();
-
-        outlineComponent.OutlineMode = Outline.Mode.OutlineAll;
-        outlineComponent.OutlineColor = Color.green;
-        outlineComponent.OutlineWidth = .2f;
-        outlineComponent.enabled = true;
+        _highlightObject.SetActive(true);
+//        Outline outlineComponent = GetComponent<Outline>();
+//        if (outlineComponent == null)
+//            outlineComponent = gameObject.AddComponent<Outline>();
+//
+//        outlineComponent.OutlineMode = Outline.Mode.OutlineAll;
+//        outlineComponent.OutlineColor = Color.green;
+//        outlineComponent.OutlineWidth = .2f;
+//        outlineComponent.enabled = true;
     }
 
     public void Unhighlight()
     {
-        Outline outlineComponent = GetComponent<Outline>();
-        if (outlineComponent != null)
-            outlineComponent.enabled = false;
+        _highlightObject.SetActive(false);
+//        Outline outlineComponent = GetComponent<Outline>();
+//        if (outlineComponent != null)
+//            outlineComponent.enabled = false;
     }
 
     public void Interact()
@@ -72,7 +74,7 @@ public class TreeController : MonoBehaviour, IInteractive
         _transform.localRotation = Quaternion.Euler(Random.Range(-15f,15f),0,Random.Range(-15f,15f));
             
         SpawnWood();
-        Debug.Log(_wood);
+//        Debug.Log(_wood);
     }
 
     private void SpawnWood()
