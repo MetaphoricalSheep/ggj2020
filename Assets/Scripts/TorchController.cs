@@ -19,7 +19,7 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
     {
         var forward = characterTransform.forward;
         var right = characterTransform.right;
-        var position = characterTransform.position + forward + forward - right - right;
+        var position = characterTransform.position + forward - (right * 0.5f);
         var transform = Instantiate(torch, position, Quaternion.identity, characterTransform);
         var controller = transform.GetComponent<TorchController>();
         controller._torchFuel = fuel;
