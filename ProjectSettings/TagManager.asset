@@ -8,6 +8,7 @@ TagManager:
   - Wood
   - Fire
   - TutorialController
+  - MonsterController
   layers:
   - Default
   - TransparentFX
