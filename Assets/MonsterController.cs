@@ -45,7 +45,6 @@ public class MonsterController : MonoBehaviour {
 
     private static void MoveMonstersAwayFromPlayer() {
         foreach (GameObject m in monsters) {
-            print("Moving: " + m);
             Vector3 distVec = m.transform.position - player.transform.position;
             float currentDistance = Vector3.Magnitude(distVec);
             Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
