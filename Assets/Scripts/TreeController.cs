@@ -60,6 +60,7 @@ public class TreeController : MonoBehaviour, IInteractive
     void Update()
     {
         _transform.localRotation = Quaternion.Slerp(_transform.localRotation, Quaternion.identity, Time.deltaTime * 10f);
+        _highlightObject.transform.rotation = Quaternion.Euler(90,0,0);
     }
 
     private void ChopTree()
@@ -72,7 +73,7 @@ public class TreeController : MonoBehaviour, IInteractive
         _soundManager.PlayChop();
         _wood--;
         _transform.localRotation = Quaternion.Euler(Random.Range(-15f,15f),0,Random.Range(-15f,15f));
-            
+        _highlightObject.transform.rotation = Quaternion.Euler(90,0,0);
         SpawnWood();
 //        Debug.Log(_wood);
     }
