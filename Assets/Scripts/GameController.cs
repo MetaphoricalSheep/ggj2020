@@ -85,12 +85,6 @@ public class GameController : MonoBehaviour
 
     private void LateUpdate()
     {
-        //Debug.Log($"_fireHealth.HasMoreThan(0f) {!_fireHealth.HasMoreThan(0f)} playing {_gameState == GameState.Playing}");
-        if (!_fireHealth.HasMoreThan(0f) && _gameState == GameState.Playing)
-        {
-            gameState = GameState.GameOver;
-        }
-
         if (gameState == GameState.Playing)
         {
             _secondsSurvived += Time.deltaTime;

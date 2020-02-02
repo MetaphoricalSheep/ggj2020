@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 
-public class CharacterBar : MonoBehaviour {
+public class CharacterBar : MonoBehaviour
+{
     private SpriteRenderer spriteRenderer;
 
     public float maxAmount = 100f;
-    public enum DrawPosition { abovePlayer, globallyTopLeft, globallyTopRight,
-        dontDraw, globallyBottomCenter };
+
+    public enum DrawPosition
+    {
+        abovePlayer,
+        globallyTopLeft,
+        globallyTopRight,
+        dontDraw,
+        globallyBottomCenter
+    };
 
     // Public
     public Texture2D textureBack; // back segment
@@ -38,65 +46,81 @@ public class CharacterBar : MonoBehaviour {
     protected float lastAddTime = -10f;
 
 
-    public virtual void Awake() {
+    public virtual void Awake()
+    {
         currentAmount = maxAmount;
         previousAmount = maxAmount;
     }
 
-    public virtual void Start() {
+    protected virtual void Start()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public virtual void Add(float amount) {
+    public virtual void Add(float amount)
+    {
         float amountBefore = currentAmount;
         currentAmount += Mathf.Abs(amount);
 
-        if (currentAmount > maxAmount) {
+        if (currentAmount > maxAmount)
+        {
             currentAmount = maxAmount;
         }
 
-        if (!Mathf.Approximately(amountBefore, currentAmount)) {
+        if (!Mathf.Approximately(amountBefore, currentAmount))
+        {
             lastChangeTime = Time.time;
             lastAddTime = Time.time;
         }
     }
 
-    public virtual void Remove(float amount) {
+    public virtual void Remove(float amount)
+    {
         float amountBefore = currentAmount;
         currentAmount -= Mathf.Abs(amount);
-        
-        if (currentAmount < 0) {
+
+        if (currentAmount < 0)
+        {
             currentAmount = 0;
         }
 
-        if (!Mathf.Approximately(amountBefore, currentAmount)) {
+        if (!Mathf.Approximately(amountBefore, currentAmount))
+        {
             lastChangeTime = Time.time;
             lastRemoveTime = Time.time;
         }
     }
 
-    protected virtual void Update() {
+    protected virtual void Update()
+    {
         // Change bar over time
-        if (previousAmount > currentAmount) {
+        if (previousAmount > currentAmount)
+        {
             previousAmount -= (maxAmount / visualDrainSpeed) * Time.deltaTime;
 
-            if (previousAmount < currentAmount) {
+            if (previousAmount < currentAmount)
+            {
                 previousAmount = currentAmount;
             }
-        } else if (previousAmount < currentAmount) {
+        }
+        else if (previousAmount < currentAmount)
+        {
             previousAmount += (maxAmount / visualDrainSpeed) * Time.deltaTime;
 
-            if (previousAmount > currentAmount) {
+            if (previousAmount > currentAmount)
+            {
                 previousAmount = currentAmount;
             }
         }
     }
 
-    public virtual bool HasMoreThan(float amount) {
+    public virtual bool HasMoreThan(float amount)
+    {
         return currentAmount > amount;
     }
 
-    void OnGUI() {
+    void OnGUI()
+    {
         barHeight = Screen.height * barHeightPercent;
         barWidth = Screen.width * barWidthPercent;
         positionX = Screen.width * positionXPercent;
@@ -108,9 +132,11 @@ public class CharacterBar : MonoBehaviour {
         Rect back = Rect.zero;
         Rect previous = Rect.zero;
         Rect current = Rect.zero;
-        switch (drawPosition) {
+        switch (drawPosition)
+        {
             case DrawPosition.abovePlayer:
-                if (lastChangeTime + drawLastChangeTime < Time.time) {
+                if (lastChangeTime + drawLastChangeTime < Time.time)
+                {
                     break;
                 }
 
@@ -136,23 +162,30 @@ public class CharacterBar : MonoBehaviour {
                 current = new Rect(Screen.width - positionX - barWidth, positionY, currentLength, barHeight);
                 break;
             case DrawPosition.globallyBottomCenter:
-                back = new Rect((Screen.width * 0.5f) - (barWidth * 0.5f) - borderWidth, Screen.height - (positionY + borderWidth + barHeight), barWidth + (borderWidth * 2), barHeight + (borderWidth * 2));
-                previous = new Rect((Screen.width * 0.5f) - ((barWidth) * 0.5f) + Mathf.Min(currentLength, previousLength), Screen.height - (positionY + barHeight), Mathf.Abs(currentLength - previousLength), barHeight);
+                back = new Rect((Screen.width * 0.5f) - (barWidth * 0.5f) - borderWidth, Screen.height - (positionY + borderWidth + barHeight), barWidth + (borderWidth * 2),
+                    barHeight + (borderWidth * 2));
+                previous = new Rect((Screen.width * 0.5f) - ((barWidth) * 0.5f) + Mathf.Min(currentLength, previousLength), Screen.height - (positionY + barHeight),
+                    Mathf.Abs(currentLength - previousLength), barHeight);
                 current = new Rect((Screen.width * 0.5f) - ((barWidth) * 0.5f), Screen.height - (positionY + barHeight), currentLength, barHeight);
                 break;
             default:
                 return;
         }
 
-        if (previousLength < currentLength && drawPlusChange) {
+        if (previousLength < currentLength && drawPlusChange)
+        {
             GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(current, textureCurrent);
             GUI.DrawTexture(previous, texturePrevious);
-        } else if (drawMinusChange) {
+        }
+        else if (drawMinusChange)
+        {
             GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(previous, texturePrevious);
             GUI.DrawTexture(current, textureCurrent);
-        } else {
+        }
+        else
+        {
             GUI.DrawTexture(back, textureBack);
             GUI.DrawTexture(current, textureCurrent);
         }

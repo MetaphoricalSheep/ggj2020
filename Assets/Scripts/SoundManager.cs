@@ -3,7 +3,6 @@
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _heartBeatSource;
 
     [SerializeField] private AudioClip[] _dropLog;
@@ -42,7 +41,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayGameOver()
     {
-        _audioSource.PlayOneShot(_gameOver, 0.5f);
+        _audioSource.PlayOneShot(_gameOver, 0.1f);
     }
 
     public void ChangeHeartBeatVolume(float volumeScale=1f)

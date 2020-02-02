@@ -16,5 +16,10 @@ public class CharacterHealth : CharacterBar {
         }
 
         base.Remove(damagePerSecond * Time.deltaTime);
+
+        if (currentAmount <= 0 && GameController.instance.gameState != GameState.GameOver)
+        {
+            GameController.instance.gameState = GameState.GameOver;
+        }
     }
 }
