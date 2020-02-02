@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
    
     public void OnClickGameOverOK()
     {
-        SceneManager.LoadScene("Rene_scene2");
+        SceneManager.LoadScene("Official_scene_2");
     }
 
     void Update()
