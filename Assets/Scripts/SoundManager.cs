@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _gameOver;
     [SerializeField] private AudioClip _treeWhooshIn;
     [SerializeField] private AudioClip _treeWhooshOut;
+    [SerializeField] private AudioClip _torchCollect;
     
     public static SoundManager Instance;
 
@@ -50,6 +51,7 @@ public class SoundManager : MonoBehaviour
     public void ChangeHeartBeatVolume(float volumeScale=1f)
     {
         _heartBeatSource.volume = volumeScale;
+        _heartBeatSource.pitch = 1.3f + volumeScale / 2;
     }
 
     public void PlayTreeWhooshIn()
@@ -71,6 +73,11 @@ public class SoundManager : MonoBehaviour
     {
         _treeTalkSource.Stop();
         _treeTalkSource.Play();
+    }
+
+    public void PlayCollectTorch()
+    {
+        _audioSource.PlayOneShot(_torchCollect);
     }
 
     private void Awake()

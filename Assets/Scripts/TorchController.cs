@@ -24,6 +24,7 @@ public class TorchController : MonoBehaviour, IPickable, IBurnable, IPlaceable
         var controller = transform.GetComponent<TorchController>();
         controller._torchFuel = fuel;
         controller.Hide();
+        SoundManager.Instance.PlayCollectTorch();
 
         return controller;
     }

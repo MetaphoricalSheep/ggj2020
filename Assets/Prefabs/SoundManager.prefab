@@ -43,7 +43,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0ba51e17828154fd7aa2e644651e195c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.9
+  m_Volume: 0.5
   m_Pitch: 0.75
   Loop: 0
   Mute: 0
@@ -538,3 +538,4 @@ MonoBehaviour:
   _gameOver: {fileID: 8300000, guid: 527af75b83acb468e9dc7eb265bdad97, type: 3}
   _treeWhooshIn: {fileID: 8300000, guid: 123bd55bf7fd5472f8218d7863f3c64a, type: 3}
   _treeWhooshOut: {fileID: 8300000, guid: 1ad85e5942319493383a591bab89debf, type: 3}
+  _torchCollect: {fileID: 8300000, guid: 81d89a88841e64c029e6a0df2f755b28, type: 3}
