@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class MonsterController : MonoBehaviour {
-    [SerializeField] public static float disableDistance = 15f;
+    [SerializeField] public static float disableDistance = 18f;
     [SerializeField] public static float destroyDistance = 8f;
     [SerializeField] public static float moveDistance = 12f;
 
@@ -45,16 +45,21 @@ public class MonsterController : MonoBehaviour {
 
     private static void MoveMonstersAwayFromPlayer() {
         foreach (GameObject m in monsters) {
-            Vector3 distVec = m.transform.position - player.transform.position;
-            float currentDistance = Vector3.Magnitude(distVec);
-            Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
-            moveVec.y = 0.0f;
+            if (m.activeSelf) {
+                Vector3 distVec = m.transform.position - player.transform.position;
+                float currentDistance = Vector3.Magnitude(distVec);
+                Vector3 moveVec = (moveDistance - currentDistance) * distVec.normalized;
+                moveVec.y = 0.0f;
 
-            if (moveVec.magnitude > 0.05f && moveVec.magnitude < 10f) {
-                m.transform.position += moveVec;
-                CheckMonsterDestory(m);
+                if (moveDistance < currentDistance) {
+                    moveVec = moveVec.normalized * Time.deltaTime * 3f;
+                }
+
+                if (moveVec.magnitude > 0.05f && moveVec.magnitude < 10f) {
+                    m.transform.position += moveVec;
+                    CheckMonsterDestory(m);
+                }
             }
-
         }
     }
 
