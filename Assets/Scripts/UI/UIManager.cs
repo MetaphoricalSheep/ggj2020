@@ -62,6 +62,10 @@ public class UIManager : MonoBehaviour
         GameController.instance.gameState = GameState.Playing;
         _soundManager.PlayGameStart();
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
    
     public void OnClickGameOverOK()
     {
@@ -70,15 +74,17 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Pause"))
-        {
-            //TODO implement pause
-            Debug.Log($"Pause!");
-        }
-
         if (GameController.instance == null)
             return;
         
+        if (Input.GetButtonDown("Pause"))
+        {
+            if (GameController.instance.gameState == GameState.Playing)
+                GameController.instance.gameState = GameState.Paused;
+            else if (GameController.instance.gameState == GameState.Paused)
+                GameController.instance.gameState = GameState.Playing;
+        }
+
         if (Input.GetButtonDown("Fire1")
             || Input.GetButtonDown("Fire2")
             || Input.GetButtonDown("Fire3")   
