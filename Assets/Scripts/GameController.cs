@@ -49,11 +49,12 @@ public class GameController : MonoBehaviour
                 || _gameState == GameState.Paused
                 || _gameState == GameState.GameOver)
             {
-                
+                Cursor.visible = true;
                 Time.timeScale = 0;
             }
             else
             {
+                Cursor.visible = false;
                 Time.timeScale = 1;
             }
         }
