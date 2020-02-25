@@ -16,8 +16,8 @@ public class TutorialController : MonoBehaviour
     private SoundManager _soundManager;
 
     public float fadeTime = 0.2f;
-    public float fadeOutPixels = -1000;
-    public float fadeInPixels = -150;
+    private float fadeOutPixels;
+    private float fadeInPixels = 0;
     public float stayDuration = 5f;
     public AnimationCurve showAnimationCurve;
     private float animationStartTime = -10f;
@@ -26,6 +26,7 @@ public class TutorialController : MonoBehaviour
     private void Start()
     {
         _soundManager = SoundManager.Instance;
+        fadeOutPixels = -Screen.height - fadeInPixels;
         PlayChopTree();
     }
 
