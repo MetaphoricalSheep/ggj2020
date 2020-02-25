@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691641930264463430}
   - component: {fileID: 1630939092240773493}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8412072080128640816, guid: 6b65e4662fea7234496a2a3159bcb9f2, type: 3}
+    - {fileID: 8412072080128640817, guid: 6b65e4662fea7234496a2a3159bcb9f2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6b65e4662fea7234496a2a3159bcb9f2, type: 3}
 --- !u!1 &266251136452413620 stripped
 GameObject:
