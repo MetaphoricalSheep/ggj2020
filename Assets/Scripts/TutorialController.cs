@@ -83,7 +83,7 @@ public class TutorialController : MonoBehaviour
     {
         string textToShow = text.text;
         text.text = "";
-        for (int i = 0; i < textToShow.Length; i++)
+        for (int i = 0; i <= textToShow.Length; i++)
         {
             text.text = textToShow.Substring(0, i);
             yield return new WaitForSeconds(1f/60f);    
