@@ -19,7 +19,7 @@ public class TutorialController : MonoBehaviour
     public float fadeOutPixels = -1000;
     public float fadeInPixels = -150;
     public float stayDuration = 5f;
-
+    public AnimationCurve showAnimationCurve;
     private float animationStartTime = -10f;
     private bool _fadingOut;
 
@@ -33,30 +33,40 @@ public class TutorialController : MonoBehaviour
     {
         StartFadeIn();
         chopTreeText.enabled = true;
+        StopAllCoroutines();
+        StartCoroutine(SpeakAnimated(chopTreeText));
     }
 
     public void PlayReturnLog()
     {
         StartFadeIn();
         returnLogText.enabled = true;
+        StopAllCoroutines();
+        StartCoroutine(SpeakAnimated(returnLogText));
     }
 
     public void PlayGetTorch()
     {
         StartFadeIn();
         getTorchText.enabled = true;
+        StopAllCoroutines();
+        StartCoroutine(SpeakAnimated(getTorchText));
     }
 
     public void PlayPlaceTorch()
     {
         StartFadeIn();
         placeTorchText.enabled = true;
+        StopAllCoroutines();
+        StartCoroutine(SpeakAnimated(placeTorchText));
     }
 
     public void PlayFinalText()
     {
         StartFadeIn();
         finalText.enabled = true;
+        StopAllCoroutines();
+        StartCoroutine(SpeakAnimated(finalText));
     }
 
     private void StartFadeIn()
@@ -68,6 +78,17 @@ public class TutorialController : MonoBehaviour
         FadeInTalkingDude();
     }
 
+    IEnumerator SpeakAnimated(TextMeshProUGUI text)
+    {
+        string textToShow = text.text;
+        text.text = "";
+        for (int i = 0; i < textToShow.Length; i++)
+        {
+            text.text = textToShow.Substring(0, i);
+            yield return new WaitForSeconds(1f/60f);    
+        }
+        
+    }
     private void Update()
     {
         if (Time.time - animationStartTime < fadeTime)
@@ -93,14 +114,16 @@ public class TutorialController : MonoBehaviour
 
     public void FadeInTalkingDude()
     {
-        float newPos = Mathf.Lerp(fadeOutPixels, fadeInPixels, (Time.time - animationStartTime) / fadeTime);
+        float r = (Time.time - animationStartTime) / fadeTime;
+        float newPos = Mathf.LerpUnclamped(fadeOutPixels, fadeInPixels, showAnimationCurve.Evaluate(r));
         talkingDude.transform.position = new Vector3(talkingDude.transform.position.x,
             newPos, talkingDude.transform.position.z);
     }
 
     public void FadeOutTalkingDude()
     {
-        float newPos = Mathf.Lerp(fadeInPixels, fadeOutPixels, ((Time.time - animationStartTime) - (stayDuration - fadeTime)) / fadeTime);
+        float r = ((Time.time - animationStartTime) - (stayDuration - fadeTime)) / fadeTime;
+        float newPos = Mathf.LerpUnclamped(fadeOutPixels, fadeInPixels, showAnimationCurve.Evaluate(1-r));
         talkingDude.transform.position = new Vector3(talkingDude.transform.position.x,
             newPos, talkingDude.transform.position.z);
     }
