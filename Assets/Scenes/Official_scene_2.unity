@@ -14804,12 +14804,12 @@ PrefabInstance:
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000002323036
+      value: -0.00000025106092
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000009642819
+      value: 0.00000010419765
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -14834,7 +14834,7 @@ PrefabInstance:
     - target: {fileID: 3590849972256738465, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268405
+      value: 0.38268408
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972487085682, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -14899,17 +14899,17 @@ PrefabInstance:
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268405
+      value: 0.38268408
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000002323036
+      value: -0.00000025106092
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000009642819
+      value: 0.00000010419765
       objectReference: {fileID: 0}
     - target: {fileID: 3590849972554728685, guid: 141ca9abb2d1b45ec944d152e79c9fe8,
         type: 3}
@@ -17584,6 +17584,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MonsterController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376873373841249095, guid: e274206974f5e42d3a0dfbf6232e7108,
+        type: 3}
+      propertyPath: minMaxMonsterScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376873373841249095, guid: e274206974f5e42d3a0dfbf6232e7108,
+        type: 3}
+      propertyPath: minMaxMonsterScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1376873373841249144, guid: e274206974f5e42d3a0dfbf6232e7108,
         type: 3}
