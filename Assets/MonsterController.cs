@@ -5,14 +5,17 @@ public class MonsterController : MonoBehaviour {
     [SerializeField] public static float disableDistance = 18f;
     [SerializeField] public static float destroyDistance = 8f;
     [SerializeField] public static float moveDistance = 12f;
-
+    private static MonsterController instance;
+    [SerializeField] private Vector2 minMaxMonsterScale;
     private static List<GameObject> monsters = new List<GameObject>();
     private static GameObject player;
     private static CustomCharacterController characterController;
-
+    
     public static List<GameObject> GetMonsters() => monsters;
 
-    public static void AddMonster(GameObject m) {
+    public static void AddMonster(GameObject m)
+    {
+        m.transform.localScale = Vector3.one * Random.Range(instance.minMaxMonsterScale.x, instance.minMaxMonsterScale.y);
         monsters.Add(m);
     }
 
@@ -20,6 +23,10 @@ public class MonsterController : MonoBehaviour {
         monsters.Remove(m);
     }
 
+    void Awake()
+    {
+        instance = this;
+    }
     private void Start() {
         player = GameObject.FindWithTag("Player");
         characterController = player.GetComponent<CustomCharacterController>();

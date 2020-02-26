@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fee793123d34909b82e3e822431755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minMaxMonsterScale: {x: 0.5, y: 1.5}
