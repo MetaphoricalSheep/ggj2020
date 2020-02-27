@@ -86,7 +86,7 @@ public class TutorialController : MonoBehaviour
         for (int i = 0; i <= textToShow.Length; i++)
         {
             text.text = textToShow.Substring(0, i);
-            yield return new WaitForSeconds(1f/60f);    
+            yield return new WaitForSeconds(3f/60f);    
         }
         
     }
