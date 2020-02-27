@@ -29,6 +29,7 @@ public class MonsterController : MonoBehaviour {
         instance = this;
     }
     private void Start() {
+        Debug.LogError("Using debrecated script!");
         player = GameObject.FindWithTag("Player");
         characterController = player.GetComponent<CustomCharacterController>();
     }

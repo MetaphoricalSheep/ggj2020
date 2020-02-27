@@ -10,7 +10,7 @@ public class RegisterMonster : MonoBehaviour
     private static CustomCharacterController characterController;
 
     private float roamRadius = 5f;
-    private float fleeRadius = 10f;
+    private float fleeRadius = 6f;
     private float deathRadius = 4f;
 
     private float speed = 10f;
