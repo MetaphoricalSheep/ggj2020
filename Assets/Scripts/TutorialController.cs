@@ -88,8 +88,8 @@ public class TutorialController : MonoBehaviour
             text.text = textToShow.Substring(0, i);
             yield return new WaitForSeconds(3f/60f);    
         }
-        
     }
+
     private void Update()
     {
         if (Time.time - animationStartTime < fadeTime)
