@@ -120,14 +120,14 @@ public class RegisterMonster : MonoBehaviour
         Debug.Log("Roaming");
         Vector3 targetVector;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
             // Random location
             Vector2 ran = Random.insideUnitCircle;
             targetVector = new Vector3(ran.x, 0.0f, ran.y);
 
             // Random distance
-            targetVector *= Random.Range(0.0f, roamRadius);
+            targetVector *= Random.Range(roamRadius/2f, roamRadius);
 
             // Move to roam base
             targetVector += roamBase;
@@ -140,7 +140,7 @@ public class RegisterMonster : MonoBehaviour
         }
 
         Debug.Log("Could not find valid position");
-        return transform.position;
+        return roamBase;
     }
 
     private Vector3 GetNewFleePosition()
@@ -149,16 +149,16 @@ public class RegisterMonster : MonoBehaviour
         Vector3 targetDirection = (transform.position - player.transform.position).normalized;
         Vector3 targetVector;
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 5; i++)
         {
             // Rotate
-            targetDirection = Quaternion.Euler(0, Random.Range(-20f, 20f), 0) * targetDirection;
+            Vector3 newTargetDirection = Quaternion.Euler(0, Random.Range(-35f, 35f), 0) * targetDirection;
 
             // Scale
-            targetDirection = targetDirection.normalized * Random.Range(3f, 8f);
+            newTargetDirection = newTargetDirection.normalized * Random.Range(3f, 6f);
 
             // Make vector
-            targetVector = transform.position + targetDirection;
+            targetVector = transform.position + newTargetDirection;
             if (IsMovePositionValid(targetVector))
             {
                 targetVector.y = 1.0f;
@@ -167,7 +167,7 @@ public class RegisterMonster : MonoBehaviour
         }
 
         Debug.Log("Could not find valid position");
-        return transform.position;
+        return transform.position + (targetDirection.normalized * Random.Range(3f, 6f));
     }
 
     private bool IsMovePositionValid(Vector3 targetPosition)
@@ -197,7 +197,7 @@ public class RegisterMonster : MonoBehaviour
         Vector3 moveDirection = moveVector.normalized;
         float moveDistance = moveVector.magnitude;
 
-        for (float checkDistance = 1.0f; checkDistance < moveDistance; checkDistance = checkDistance + 1.0f)
+        for (float checkDistance = 2.0f; checkDistance < moveDistance; checkDistance = checkDistance + 2.0f)
         {
             Vector3 newPosition = moveDirection * checkDistance;
             if (LightManager.GetClosestLightDistanceToPosition(newPosition) < deathRadius)
