@@ -58,7 +58,6 @@ public class UIManager : MonoBehaviour
     
     public void OnClickPlay()
     {
-        Debug.Log($"OnClickPlay!");
         GameController.instance.gameState = GameState.Playing;
         _soundManager.PlayGameStart();
     }

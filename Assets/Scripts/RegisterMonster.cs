@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class RegisterMonster : MonoBehaviour
 {
-    private static GameObject player;
-    private static CustomCharacterController characterController;
-
+    private GameObject player;
+    private CustomCharacterController characterController;
+    private Animator animator;
     private float roamRadius = 5f;
     private float fleeRadius = 6f;
     private float deathRadius = 4f;
@@ -22,8 +22,11 @@ public class RegisterMonster : MonoBehaviour
 
     private void Start()
     {
+        float randomScale = Random.Range(0.5f, 1.5f);
+        GetComponentInChildren<Transform>().localScale = new Vector3(randomScale, randomScale, randomScale);
         player = GameObject.FindWithTag("Player");
         characterController = player.GetComponent<CustomCharacterController>();
+        animator = GetComponentInChildren<Animator>();
         StartCoroutine(SetIdle());
         roamBase = transform.position;
         roamBase.y = 1.0f;
@@ -65,15 +68,10 @@ public class RegisterMonster : MonoBehaviour
     {
         if (characterController.HoldingFire())
         {
-            print("Holding fire");
-
-            print("Distance: " + Vector3.Distance(transform.position, player.transform.position));
-            print("fleeRadius: " + fleeRadius);
-
             if (Vector3.Distance(transform.position, player.transform.position) <= fleeRadius)
             {
-                print("Fleeing");
                 state = EnemyStates.Fleeing;
+                animator.SetBool("Moving", true);
                 targetPosition = GetNewFleePosition();
                 roamBase = targetPosition;
                 roamBase.y = 1.0f;
@@ -92,14 +90,15 @@ public class RegisterMonster : MonoBehaviour
 
     IEnumerator SetIdle()
     {
-        Debug.Log("Now idle!");
         state = EnemyStates.Idle;
-        yield return new WaitForSeconds(Random.Range(2f, 10f));
+        animator.SetBool("Moving", false);
+
+        yield return new WaitForSeconds(Random.Range(3f, 10f));
         if (state == EnemyStates.Idle)
         {
             targetPosition = GetNewRoamPosition();
-            Debug.Log("Now moving!");
             state = EnemyStates.Moving;
+            animator.SetBool("Moving", true);
         }
     }
     
@@ -117,7 +116,6 @@ public class RegisterMonster : MonoBehaviour
 
     private Vector3 GetNewRoamPosition()
     {
-        Debug.Log("Roaming");
         Vector3 targetVector;
 
         for (int i = 0; i < 5; i++)
@@ -139,20 +137,19 @@ public class RegisterMonster : MonoBehaviour
             }
         }
 
-        Debug.Log("Could not find valid position");
         return roamBase;
     }
 
     private Vector3 GetNewFleePosition()
     {
-        Debug.Log("Fleing");
         Vector3 targetDirection = (transform.position - player.transform.position).normalized;
         Vector3 targetVector;
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 10; i++)
         {
             // Rotate
-            Vector3 newTargetDirection = Quaternion.Euler(0, Random.Range(-35f, 35f), 0) * targetDirection;
+            float maxRotation = 10f + (i * 5f);
+            Vector3 newTargetDirection = Quaternion.Euler(0, Random.Range(-maxRotation, maxRotation), 0) * targetDirection;
 
             // Scale
             newTargetDirection = newTargetDirection.normalized * Random.Range(3f, 6f);
@@ -166,18 +163,14 @@ public class RegisterMonster : MonoBehaviour
             }
         }
 
-        Debug.Log("Could not find valid position");
         return transform.position + (targetDirection.normalized * Random.Range(3f, 6f));
     }
 
     private bool IsMovePositionValid(Vector3 targetPosition)
     {
-        Debug.Log("Monster " + gameObject.name + " would like to move to " + targetPosition);
-
         // Check the target vector for light
         if (LightManager.GetClosestLightDistanceToPosition(targetPosition) < fleeRadius)
         {
-            Debug.Log("Arrival vector is in light");
             return false;
         }
 
@@ -187,7 +180,6 @@ public class RegisterMonster : MonoBehaviour
         Vector3 rayVector = rayTarget - raySource;
         if (Physics.Raycast(raySource, rayVector.normalized, rayVector.magnitude))
         {
-            Debug.Log("Raycast hit something");
             return false;
         }
 
@@ -202,7 +194,6 @@ public class RegisterMonster : MonoBehaviour
             Vector3 newPosition = moveDirection * checkDistance;
             if (LightManager.GetClosestLightDistanceToPosition(newPosition) < deathRadius)
             {
-                Debug.Log("Way would be in light!");
                 return false;
             }
         }
