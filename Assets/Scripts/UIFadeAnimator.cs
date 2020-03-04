@@ -11,11 +11,11 @@ public class UIFadeAnimator : MonoBehaviour
     [Range(.1f,5f)]
     [SerializeField] private float _duration;
     private CanvasGroup _canvasGroup;
-    private bool shown = false;
+    public bool shown = false;
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _canvasGroup.alpha = 0;
+        _canvasGroup.alpha = shown ? 1 : 0;
     }
 
     

@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] GameObject _helperPanel;
     [SerializeField] TMP_Text _helperMessage;
+    [SerializeField] private UIFadeAnimator _semiBlackBgAnimator;
     private SoundManager _soundManager;
     /*
      * 0 MainMenu
@@ -36,6 +37,11 @@ public class UIManager : MonoBehaviour
 
     public static void ShowUIPanel(int panelIndex)
     {
+        if(panelIndex != 1)
+            instance._semiBlackBgAnimator.Show();
+        else
+            instance._semiBlackBgAnimator.Hide();
+        
         for (int i = 0; i < instance.uiPanels.Count; i++)
             instance.uiPanels[i].SetActive(i == panelIndex);
 
