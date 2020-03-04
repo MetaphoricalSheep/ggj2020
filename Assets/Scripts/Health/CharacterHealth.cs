@@ -5,7 +5,7 @@ public class CharacterHealth : MonoBehaviour {
     public bool isSafe = true;
     public float damagePerSecond;
     public Image healthBar;
-
+    [SerializeField] private UIFadeAnimator _charHealthFadeAnimator;
     public float currentAmount;
     public float maxAmount;
 
@@ -36,6 +36,7 @@ public class CharacterHealth : MonoBehaviour {
         {
             healthBar.fillAmount = currentAmount / maxAmount;
         }
+        
     }
 
     public virtual void Add(float amount)
@@ -46,6 +47,7 @@ public class CharacterHealth : MonoBehaviour {
         if (currentAmount > maxAmount)
         {
             currentAmount = maxAmount;
+            _charHealthFadeAnimator.Hide(1f);
         }
     }
 
@@ -53,7 +55,7 @@ public class CharacterHealth : MonoBehaviour {
     {
         float amountBefore = currentAmount;
         currentAmount -= Mathf.Abs(amount);
-
+        _charHealthFadeAnimator.Show();
         if (currentAmount < 0)
         {
             currentAmount = 0;
