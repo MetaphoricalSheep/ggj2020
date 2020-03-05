@@ -105,7 +105,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.311
+    - _OutlineWidth: 0.13
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Shrikhand-Regular SDF
+  m_Name: Shrikhand-Regular SDF 1
   m_EditorClassIdentifier: 
-  hashCode: 1543572846
+  hashCode: 1618615551
   material: {fileID: -6927150688003965420}
   materialHashCode: -1641659611
   m_Version: 1.1.0
